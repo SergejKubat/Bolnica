@@ -1,10 +1,15 @@
 package com.bolnica.database;
 
+import com.bolnica.model.Pacijent;
+import com.bolnica.utils.HashUtil;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class DBHelper {
 
@@ -271,7 +276,7 @@ public class DBHelper {
 
         }
     }
-    
+
     public static void updatePacijent(int id, String ime, String prezime, String pol, String datumRodjenja, String jmbg, String email, String telefon, String adresa) {
         try {
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
@@ -300,6 +305,177 @@ public class DBHelper {
         } catch (SQLException ex) {
 
         }
+    }
+
+    public static void updatePregled(int id, String datum, String vreme) {
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            connection.setAutoCommit(false);
+
+            String query = "UPDATE pregled SET PREGLED_DATUM = ?, PREGLED_VREME = ? WHERE pregled.PREGLED_ID = ?;";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setString(1, datum);
+                statement.setString(2, vreme);
+                statement.setInt(3, id);
+                statement.executeUpdate();
+                connection.commit();
+                statement.close();
+            } catch (SQLException ex) {
+                connection.rollback();
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+
+        }
+    }
+
+    public static void updateDijagnoza(int id, String opis) {
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            connection.setAutoCommit(false);
+
+            String query = "UPDATE dijagnoza SET DIJAGNOZA_OPIS = ? WHERE dijagnoza.DIJAGNOZA_ID = ?;";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setString(1, opis);
+                statement.setInt(2, id);
+                statement.executeUpdate();
+                connection.commit();
+                statement.close();
+            } catch (SQLException ex) {
+                connection.rollback();
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+
+        }
+    }
+
+    public static void updateRecept(int id, int lekId) {
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            connection.setAutoCommit(false);
+
+            String query = "UPDATE recept SET LEK_ID = ? WHERE recept.RECEPT_ID = ?;";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, lekId);
+                statement.setInt(2, id);
+                statement.executeUpdate();
+                connection.commit();
+                statement.close();
+            } catch (SQLException ex) {
+                connection.rollback();
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+
+        }
+    }
+
+    public static void updateLozinka(int id, String lozinka) {
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            connection.setAutoCommit(false);
+
+            String query = "UPDATE doktor SET DOKTOR_LOZINKA = ? WHERE doktor.DOKTOR_ID = ?;";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setString(1, HashUtil.getSHA(lozinka));
+                statement.setInt(2, id);
+                statement.executeUpdate();
+                connection.commit();
+                statement.close();
+            } catch (SQLException ex) {
+                connection.rollback();
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+
+        }
+    }
+
+    public static void blockDoktor(int id, boolean tip) {
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            connection.setAutoCommit(false);
+
+            int block = tip ? 1 : 0;
+
+            String query = "UPDATE doktor SET DOKTOR_IS_BLOKIRAN = ? WHERE doktor.DOKTOR_ID = ?;";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, block);
+                statement.setInt(2, id);
+                statement.executeUpdate();
+                connection.commit();
+                statement.close();
+            } catch (SQLException ex) {
+                connection.rollback();
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+
+        }
+    }
+
+    public static void blockAdmin(int id, boolean tip) {
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            connection.setAutoCommit(false);
+
+            int block = tip ? 1 : 0;
+
+            String query = "UPDATE administrator SET ADMIN_IS_BLOCKED = ? WHERE doktor.ADMIN_ID = ?;";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, block);
+                statement.setInt(2, id);
+                statement.executeUpdate();
+                connection.commit();
+                statement.close();
+            } catch (SQLException ex) {
+                connection.rollback();
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+
+        }
+    }
+
+    public static List<Pacijent> selectAllPacijent() {
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            connection.setAutoCommit(false);
+
+            String query = "SELECT * FROM pacijent;";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                List<Pacijent> pacijenti = new ArrayList<>();
+                ResultSet result = statement.executeQuery();
+                while (result.next()) {
+                    pacijenti.add(new Pacijent(result.getInt(1), result.getInt(2), result.getString(3), result.getString(4), result.getString(5),
+                            result.getDate(6).toString(), result.getString(7), result.getString(8), result.getString(9), result.getString(10)));
+                }
+                connection.commit();
+                statement.close();
+                return pacijenti;
+            } catch (SQLException ex) {
+                connection.rollback();
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+
+        }
+        return null;
     }
 
 }
