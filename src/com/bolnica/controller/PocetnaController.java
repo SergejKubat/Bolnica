@@ -20,7 +20,7 @@ public class PocetnaController implements Initializable {
     private void handleButtonAction(ActionEvent event) {
         label.setText("Hello World!");
         Platform.runLater(() -> {
-            List<Pacijent> pacijenti = DBHelper.selectAllPacijent();
+            List<Pacijent> pacijenti = DBHelper.selectAllPacijent(1);
             pacijenti.forEach((p) -> {
                 System.out.println(p.toString());
             });
