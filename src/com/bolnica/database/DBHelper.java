@@ -442,7 +442,7 @@ public class DBHelper {
 
             int block = tip ? 1 : 0;
 
-            String query = "UPDATE administrator SET ADMIN_IS_BLOCKED = ? WHERE doktor.ADMIN_ID = ?;";
+            String query = "UPDATE admin SET ADMIN_IS_BLOCKED = ? WHERE admin.ADMIN_ID = ?;";
 
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setInt(1, block);
@@ -662,7 +662,7 @@ public class DBHelper {
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             connection.setAutoCommit(false);
 
-            String query = "SELECT * FROM administrator;";
+            String query = "SELECT * FROM admin;";
 
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 List<Administrator> administratori = new ArrayList<>();
@@ -793,6 +793,116 @@ public class DBHelper {
 
         }
         return null;
+    }
+
+    public static void deletePregled(int id) {
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            connection.setAutoCommit(false);
+
+            String query = "DELETE FROM pregled WHERE pregled.PREGLED_ID = ?";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, id);
+                statement.executeUpdate();
+                connection.commit();
+                statement.close();
+            } catch (SQLException ex) {
+                connection.rollback();
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+
+        }
+    }
+
+    public static void deleteDijagnoza(int id) {
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            connection.setAutoCommit(false);
+
+            String query = "DELETE FROM dijagnoza WHERE dijagnoza.DIJAGNOZA_ID = ?";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, id);
+                statement.executeUpdate();
+                connection.commit();
+                statement.close();
+            } catch (SQLException ex) {
+                connection.rollback();
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+
+        }
+    }
+
+    public static void deleteRecept(int id) {
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            connection.setAutoCommit(false);
+
+            String query = "DELETE FROM recept WHERE recept.RECEPT_ID = ?";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, id);
+                statement.executeUpdate();
+                connection.commit();
+                statement.close();
+            } catch (SQLException ex) {
+                connection.rollback();
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+
+        }
+    }
+
+    public static void deleteDoktor(int id) {
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            connection.setAutoCommit(false);
+
+            String query = "DELETE FROM doktor WHERE doktor.DOKTOR_ID = ?";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, id);
+                statement.executeUpdate();
+                connection.commit();
+                statement.close();
+            } catch (SQLException ex) {
+                connection.rollback();
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+
+        }
+    }
+
+    public static void deleteAdministrator(int id) {
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            connection.setAutoCommit(false);
+
+            String query = "DELETE FROM admin WHERE admin.ADMIN_ID = ?";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, id);
+                statement.executeUpdate();
+                connection.commit();
+                statement.close();
+            } catch (SQLException ex) {
+                connection.rollback();
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+
+        }
     }
 
 }
