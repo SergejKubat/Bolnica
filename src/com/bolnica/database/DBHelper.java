@@ -28,6 +28,76 @@ public class DBHelper {
     private static final String DB_URL = "jdbc:mysql://localhost/bolnica";
 
     private static Connection connection = null;
+    
+    public static Doktor prijavaDoktor(String email, String lozinka) {
+        
+        Doktor doktor = null;
+        
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            connection.setAutoCommit(false);
+
+            String query = "SELECT * FROM doktor WHERE doktor.DOKTOR_EMAIL = ? AND doktor.DOKTOR_LOZINKA = ?;";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setString(1, email);
+                statement.setString(2, HashUtil.getSHA(lozinka));
+                ResultSet result = statement.executeQuery();
+                if (result.next()) {
+                    if (result.getBoolean(14)) {
+                        return doktor;
+                    }
+                    doktor = new Doktor(result.getInt(1), result.getInt(2), result.getInt(3), result.getString(4), result.getString(5), result.getString(6),
+                            result.getDate(7).toString(), result.getString(8), result.getString(9), result.getString(10), result.getString(11), result.getString(12), result.getString(13),
+                            result.getBoolean(14));
+                }
+                connection.commit();
+                statement.close();
+                return doktor;
+            } catch (SQLException ex) {
+                connection.rollback();
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+
+        }
+        return doktor;
+    }
+    
+    public static Administrator prijavaAdministrator(String email, String lozinka) {
+        
+        Administrator administrator = null;
+        
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            connection.setAutoCommit(false);
+
+            String query = "SELECT * FROM admin WHERE admin.ADMIN_EMAIL = ? AND admin.ADMIN_LOZINKA = ?;";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setString(1, email);
+                statement.setString(2, HashUtil.getSHA(lozinka));
+                ResultSet result = statement.executeQuery();
+                if (result.next()) {
+                    if (result.getBoolean(4)) {
+                        return administrator;
+                    }
+                    administrator = new Administrator(result.getInt(1), result.getString(2), result.getString(3), result.getBoolean(4));
+                }
+                connection.commit();
+                statement.close();
+                return administrator;
+            } catch (SQLException ex) {
+                connection.rollback();
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+
+        }
+        return administrator;
+    }
 
     public static void insertPacijent(String ime, String prezime, String pol, String datumRodjenja, String jmbg, String email, String telefon, String adresa) {
         try {
