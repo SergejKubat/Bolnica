@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="@../../../../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bolnica.controller.PocetnaController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="file:css/style-login.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bolnica.controller.PrijavaDoktorController">
    <children>
       <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="sidebar">
          <children>
@@ -21,7 +21,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
                <image>
-                  <Image url="@../../../../slike/logo.png" />
+                  <Image url="file:img/logo.png" />
                </image>
             </ImageView>
             <Label text="Dobrodošli u" textFill="WHITE">
@@ -43,7 +43,7 @@
          <children>
             <ImageView fitHeight="45.0" fitWidth="60.0" layoutX="30.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../slike/logo.png" />
+                  <Image url="file:img/logo.png" />
                </image>
             </ImageView>
             <Label layoutX="30.0" layoutY="88.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Doktor" textFill="#545454">
@@ -64,16 +64,16 @@
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <Label fx:id="zabLozinkaText" layoutX="173.0" layoutY="339.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#open_zab_lozinka" styleClass="forgetBtn" text="Zaboravljena lozinka?" textFill="#a3a3a3">
+            <Label fx:id="zabLozinkaText" layoutX="173.0" layoutY="339.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#openZabLozinka" styleClass="forgetBtn" text="Zaboravljena lozinka?" textFill="#a3a3a3">
                <font>
                   <Font name="Ebrima" size="16.0" />
                </font>
             </Label>
-            <Button fx:id="prijavaBtn" layoutX="50.0" layoutY="379.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#prijavi_se" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" text="Prijava">
+            <Button fx:id="prijavaBtn" layoutX="50.0" layoutY="379.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#prijava" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" text="Prijava">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
-            <Label fx:id="prijavaAdminText" layoutX="100.0" layoutY="547.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#open_prijava_admin" styleClass="forgetBtn" text="Prijavite se kao adminisrator" textFill="#a3a3a3">
+            <Label fx:id="prijavaAdminText" layoutX="100.0" layoutY="547.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#openPrijavaAdmin" styleClass="forgetBtn" text="Prijavite se kao administrator" textFill="#a3a3a3">
                <font>
                   <Font name="Ebrima" size="16.0" />
                </font>
