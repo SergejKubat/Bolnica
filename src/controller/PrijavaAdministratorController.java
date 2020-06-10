@@ -30,23 +30,71 @@ public class PrijavaAdministratorController implements Initializable {
 
     @FXML
     private Button prijavaBtn;
-    
-    @FXML
-    private ImageView nazad;
 
     @FXML
-    private Label prijavaAdminText;
+    private Label prijavaDoktorText;
     
      @FXML
     private ImageView emailError;
 
     @FXML
     private ImageView lozinkaError;
+    
+    @FXML
+    private Label emailSavet;
+
+    @FXML
+    private Label lozinkaSavet;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         emailError.setVisible(false);
         lozinkaError.setVisible(false);
+        emailSavet.setVisible(false);
+        lozinkaSavet.setVisible(false);
+        prijavaBtn.setDisable(true);
+    }
+    
+    @FXML
+    public void validateEmailInput() {
+        String email = emailInput.getText();
+        if (!Validation.proveriEmail(email)) {
+            emailError.setVisible(true);
+            emailSavet.setVisible(true);
+            emailInput.setStyle("-fx-border-color: #CF0808");
+        } else {
+            emailError.setVisible(false);
+            emailSavet.setVisible(false);
+            emailInput.setStyle("-fx-border-color: #41E443");
+            checkValues();
+        }
+    }
+    
+    @FXML
+    public void validateLozinkaInput() {
+        String lozinka = lozinkaInput.getText();
+        if (!Validation.proveriLozinku(lozinka)) {
+            lozinkaError.setVisible(true);
+            lozinkaSavet.setVisible(true);
+            lozinkaInput.setStyle("-fx-border-color: #CF0808");
+        } else {
+            lozinkaError.setVisible(false);
+            lozinkaSavet.setVisible(false);
+            lozinkaInput.setStyle("-fx-border-color: #41E443");
+            checkValues();
+        }
+    }
+    
+    @FXML
+    public void checkValues() {
+        String email = emailInput.getText();
+        String lozinka = lozinkaInput.getText();
+        if (Validation.proveriEmail(email) && Validation.proveriLozinku(lozinka)) {
+            prijavaBtn.setDisable(false);
+        }
+        else {
+            prijavaBtn.setDisable(true);
+        }
     }
     
     @FXML
@@ -62,7 +110,7 @@ public class PrijavaAdministratorController implements Initializable {
                 System.out.println(admin.toString());
             }
             else {
-                System.out.println("p ogresni kredencijali");
+                System.out.println("pogresni kredencijali");
             }
         }
         else {

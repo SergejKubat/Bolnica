@@ -14,92 +14,97 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="parent" stylesheets="file:css/style-login.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PrijavaDoktorController">
-   <children>
-      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="sidebar">
-         <children>
-            <ImageView fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
-               <image>
-                  <Image url="file:img/logo.png" />
-               </image>
-            </ImageView>
-            <Label text="Dobrodošli u" textFill="WHITE">
-               <font>
-                  <Font name="Ebrima Bold" size="16.0" />
-               </font>
-               <effect>
-                  <DropShadow />
-               </effect>
-            </Label>
-            <Label text="SUB" textFill="WHITE">
-               <font>
-                  <Font name="Impact" size="24.0" />
-               </font>
-            </Label>
-         </children>
-      </VBox>
-      <Pane fx:id="contentArea" layoutX="400.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0">
-         <children>
-            <ImageView fitHeight="45.0" fitWidth="60.0" layoutX="40.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="file:img/logo.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="40.0" layoutY="98.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Doktor" textFill="#545454">
-               <font>
-                  <Font name="Impact" size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="41.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Prijavite se da bi ste nastavili" textFill="#a3a3a3">
-               <font>
-                  <Font name="Ebrima Bold" size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="emailInput" layoutX="85.0" layoutY="233.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Unesite email">
-               <font>
-                  <Font size="14.0" />
-               </font></TextField>
-            <PasswordField fx:id="lozinkaInput" layoutX="85.0" layoutY="310.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Unesite lozinku">
-               <font>
-                  <Font size="14.0" />
-               </font></PasswordField>
-            <Label fx:id="zabLozinkaText" layoutX="183.0" layoutY="349.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#openZabLozinka" styleClass="forgetBtn" text="Zaboravljena lozinka?" textFill="#a3a3a3">
-               <font>
-                  <Font name="Ebrima" size="16.0" />
-               </font>
-            </Label>
-            <Button fx:id="prijavaBtn" layoutX="60.0" layoutY="389.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#prijava" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" text="Prijava">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font></Button>
-            <Label fx:id="prijavaAdminText" layoutX="110.0" layoutY="557.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#openPrijavaAdmin" styleClass="forgetBtn" text="Prijavite se kao administrator" textFill="#a3a3a3">
-               <font>
-                  <Font name="Ebrima" size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="84.0" layoutY="204.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="forgetBtn" text="Email:" textFill="#a3a3a3">
-               <font>
-                  <Font name="Ebrima" size="14.0" />
-               </font>
-            </Label>
-            <Label layoutX="85.0" layoutY="283.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="forgetBtn" text="Lozinka:" textFill="#a3a3a3">
-               <font>
-                  <Font name="Ebrima" size="14.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="emailError" fitHeight="32.0" fitWidth="32.0" layoutX="344.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="file:img/error.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="lozinkaError" fitHeight="32.0" fitWidth="32.0" layoutX="344.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="file:img/error.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-   </children>
+    <children>
+        <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="sidebar">
+            <children>
+                <ImageView fitHeight="120.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+                    <VBox.margin>
+                        <Insets bottom="10.0" />
+                    </VBox.margin>
+                    <image>
+                        <Image url="file:img/logo.png" />
+                    </image>
+                </ImageView>
+                <Label text="Dobrodošli u" textFill="WHITE">
+                    <font>
+                        <Font name="Ebrima Bold" size="16.0" />
+                    </font>
+                    <effect>
+                        <DropShadow />
+                    </effect>
+                </Label>
+                <Label text="SUB" textFill="WHITE">
+                    <font>
+                        <Font name="Impact" size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        <Pane fx:id="contentArea" layoutX="400.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0">
+            <children>
+                <ImageView fitHeight="45.0" fitWidth="60.0" layoutX="40.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="file:img/logo.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="40.0" layoutY="98.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Doktor" textFill="#545454">
+                    <font>
+                        <Font name="Impact" size="24.0" />
+                    </font>
+                </Label>
+                <Label layoutX="41.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Prijavite se da bi ste nastavili" textFill="#a3a3a3">
+                    <font>
+                        <Font name="Ebrima Bold" size="16.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="emailInput" layoutX="85.0" layoutY="230.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#validateEmailInput" prefHeight="30.0" prefWidth="250.0" promptText="Unesite email">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </TextField>
+                <PasswordField fx:id="lozinkaInput" layoutX="85.0" layoutY="320.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#validateLozinkaInput" prefHeight="30.0" prefWidth="250.0" promptText="Unesite lozinku">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </PasswordField>
+                <Label fx:id="zabLozinkaText" layoutX="182.0" layoutY="373.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#openZabLozinka" styleClass="forgetBtn" text="Zaboravljena lozinka?" textFill="#a3a3a3">
+                    <font>
+                        <Font name="Ebrima" size="16.0" />
+                    </font>
+                </Label>
+                <Button fx:id="prijavaBtn" layoutX="62.0" layoutY="418.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#prijava" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" text="Prijava">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Button>
+                <Label fx:id="prijavaAdminText" layoutX="110.0" layoutY="557.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#openPrijavaAdmin" styleClass="forgetBtn" text="Prijavite se kao administrator" textFill="#a3a3a3">
+                    <font>
+                        <Font name="Ebrima" size="16.0" />
+                    </font>
+                </Label>
+                <Label layoutX="84.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="forgetBtn" text="Email:" textFill="#a3a3a3">
+                    <font>
+                        <Font name="Ebrima" size="14.0" />
+                    </font>
+                </Label>
+                <Label layoutX="85.0" layoutY="290.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="forgetBtn" text="Lozinka:" textFill="#a3a3a3">
+                    <font>
+                        <Font name="Ebrima" size="14.0" />
+                    </font>
+                </Label>
+                <ImageView fx:id="emailError" fitHeight="32.0" fitWidth="32.0" layoutX="345.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="file:img/error.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="lozinkaError" fitHeight="32.0" fitWidth="32.0" layoutX="345.0" layoutY="318.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="file:img/error.png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="emailSavet" layoutX="85.0" layoutY="260.0" text="Email mora biti u validnom formatu." textFill="#cf0808" />
+                <Label fx:id="lozinkaSavet" layoutX="85.0" layoutY="349.0" prefHeight="25.0" prefWidth="375.0" text="Lozinka sadrži mala i velika slova, brojeve i znakove." textFill="#cf0808" />
+            </children>
+        </Pane>
+    </children>
 </AnchorPane>
