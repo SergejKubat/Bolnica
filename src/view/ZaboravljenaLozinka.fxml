@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="parent" stylesheets="@../../../../css/style-login.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PrijavaAdministratorController">
+<Pane id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="parent" stylesheets="@../../../../css/style-login.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ZaboravljenaLozinkaController">
     <children>
         <ImageView fitHeight="45.0" fitWidth="60.0" layoutX="40.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -30,7 +30,7 @@
                 <Font size="14.0" />
             </font>
         </TextField>
-        <Button fx:id="prijavaBtn" layoutX="58.0" layoutY="476.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#prijava" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" text="Prijava">
+        <Button fx:id="resetujLozinkuBtn" layoutX="58.0" layoutY="476.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetujLozinku" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" text="Resetuj lozinku">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
@@ -40,23 +40,23 @@
                 <Font name="Ebrima" size="14.0" />
             </font>
         </Label>
-        <ImageView fx:id="emailError" fitHeight="32.0" fitWidth="32.0" layoutX="344.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="emailError" fitHeight="32.0" fitWidth="32.0" layoutX="344.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="file:img/error.png" />
             </image>
         </ImageView>
-        <ImageView fx:id="lozinkaError" fitHeight="32.0" fitWidth="32.0" layoutX="344.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="sigurnosniKodError" fitHeight="32.0" fitWidth="32.0" layoutX="344.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="file:img/error.png" />
             </image>
         </ImageView>
-        <Label fx:id="prijavaDoktorText" layoutX="178.0" layoutY="549.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#openPrijavaDoktor" styleClass="forgetBtn" text="Nazad" textFill="#a3a3a3">
+        <Label fx:id="nazadBtn" layoutX="178.0" layoutY="552.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#nazad" styleClass="forgetBtn" text="Nazad" textFill="#a3a3a3">
             <font>
                 <Font name="Ebrima" size="16.0" />
             </font>
         </Label>
         <Label fx:id="emailSavet" layoutX="85.0" layoutY="260.0" text="Email mora biti u validnom formatu." textFill="#cf0808" />
-      <TextField fx:id="emailInput1" layoutX="85.0" layoutY="402.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#validateEmailInput" prefHeight="30.0" prefWidth="250.0" promptText="Unesite sigurnosni kod">
+      <TextField fx:id="sigurnosniKodInput" layoutX="85.0" layoutY="402.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#validateSigurnosniKodInput" prefHeight="30.0" prefWidth="250.0" promptText="Unesite sigurnosni kod">
          <font>
             <Font size="14.0" />
          </font>
@@ -66,8 +66,8 @@
             <Font name="Ebrima" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="emailSavet1" layoutX="84.0" layoutY="432.0" text="Sigurnosni kod mora biti šestocifreni broj." textFill="#cf0808" />
-      <Button fx:id="prijavaBtn1" layoutX="125.0" layoutY="305.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#prijava" prefHeight="40.0" prefWidth="150.0" styleClass="loginBtn" text="Pošalji kod">
+      <Label fx:id="sigurnosniKodSavet" layoutX="84.0" layoutY="432.0" text="Sigurnosni kod mora biti šestocifreni broj." textFill="#cf0808" />
+      <Button fx:id="posaljiKodBtn" layoutX="125.0" layoutY="305.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#posaljiKod" prefHeight="40.0" prefWidth="150.0" styleClass="loginBtn" text="Pošalji kod">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

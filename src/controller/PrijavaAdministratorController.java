@@ -16,6 +16,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class PrijavaAdministratorController implements Initializable {
     
@@ -56,13 +58,16 @@ public class PrijavaAdministratorController implements Initializable {
     }
     
     @FXML
-    public void validateEmailInput() {
+    public void validateEmailInput(KeyEvent e) {
         String email = emailInput.getText();
         if (!Validation.proveriEmail(email)) {
             emailError.setVisible(true);
             emailSavet.setVisible(true);
             emailInput.setStyle("-fx-border-color: #CF0808");
         } else {
+            if (e.getCode() == KeyCode.ENTER) {
+                lozinkaInput.requestFocus();
+            }
             emailError.setVisible(false);
             emailSavet.setVisible(false);
             emailInput.setStyle("-fx-border-color: #41E443");
@@ -71,13 +76,16 @@ public class PrijavaAdministratorController implements Initializable {
     }
     
     @FXML
-    public void validateLozinkaInput() {
+    public void validateLozinkaInput(KeyEvent e) {
         String lozinka = lozinkaInput.getText();
         if (!Validation.proveriLozinku(lozinka)) {
             lozinkaError.setVisible(true);
             lozinkaSavet.setVisible(true);
             lozinkaInput.setStyle("-fx-border-color: #CF0808");
         } else {
+            if (e.getCode() == KeyCode.ENTER) {
+                prijava();
+            }
             lozinkaError.setVisible(false);
             lozinkaSavet.setVisible(false);
             lozinkaInput.setStyle("-fx-border-color: #41E443");
@@ -116,11 +124,6 @@ public class PrijavaAdministratorController implements Initializable {
         else {
             System.out.println("pogresan format");
         }
-    }
-    
-    @FXML 
-    public void openZabLozinka() {
-        System.out.println("Zaboravljena lozinka");
     }
     
     @FXML

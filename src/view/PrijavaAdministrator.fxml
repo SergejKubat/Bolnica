@@ -36,11 +36,6 @@
                 <Font size="14.0" />
             </font>
         </PasswordField>
-        <Label fx:id="zabLozinkaText" layoutX="182.0" layoutY="373.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#openZabLozinka" styleClass="forgetBtn" text="Zaboravljena lozinka?" textFill="#a3a3a3">
-            <font>
-                <Font name="Ebrima" size="16.0" />
-            </font>
-        </Label>
         <Button fx:id="prijavaBtn" layoutX="62.0" layoutY="418.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#prijava" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" text="Prijava">
             <font>
                 <Font name="System Bold" size="14.0" />
