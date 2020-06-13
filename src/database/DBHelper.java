@@ -18,7 +18,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 public class DBHelper {
@@ -206,7 +206,7 @@ public class DBHelper {
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             connection.setAutoCommit(false);
 
-            String query = "INSERT INTO doktor (DT_ID, ODELJENJE_ID, DOKTOR_IME, DOKTOR_PREZIME, DOKTOR_POL, DOKTOR_DATUM_RODJENJA, DOKTOR_JMBG, DOKTOR_EMAIL, DOKTOR_BROJ_TELEFONA, DOKTOR_ADRESA, DOKTOR_LOZINKA, DOKTOR_OPIS) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            String query = "INSERT INTO doktor (DT_ID, ODELJENJE_ID, DOKTOR_IME, DOKTOR_PREZIME, DOKTOR_POL, DOKTOR_DATUM_RODJENJA, DOKTOR_JMBG, DOKTOR_EMAIL, DOKTOR_BROJ_TELEFONA, DOKTOR_ADRESA, DOKTOR_LOZINKA, DOKTOR_OPIS, DOKTOR_IS_BLOKIRAN) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setInt(1, doktorTipId);
@@ -214,22 +214,25 @@ public class DBHelper {
                 statement.setString(3, ime);
                 statement.setString(4, prezime);
                 statement.setString(5, pol);
-                statement.setString(6, datumRodjenja.toString());
+                statement.setDate(6, datumRodjenja);
                 statement.setString(7, jmbg);
                 statement.setString(8, email);
-                statement.setString(9, adresa);
-                statement.setString(10, lozinka);
-                statement.setString(11, opis);
+                statement.setString(9, brt);
+                statement.setString(10, adresa);
+                statement.setString(11, HashUtil.getSHA(lozinka));
+                statement.setString(12, opis);
+                statement.setBoolean(13, false);
                 statement.executeUpdate();
                 connection.commit();
                 statement.close();
             } catch (SQLException ex) {
                 connection.rollback();
+                System.out.println(ex);
             }
 
             connection.close();
         } catch (SQLException ex) {
-
+            System.out.println(ex);
         }
     }
 
@@ -676,7 +679,7 @@ public class DBHelper {
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             connection.setAutoCommit(false);
 
-            String query = "SELECT * FROM doktor WHERE doktor.DOKTOR_ID = 1;";
+            String query = "SELECT * FROM doktor WHERE doktor.DOKTOR_ID = ?;";
 
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setInt(1, id);
@@ -690,11 +693,12 @@ public class DBHelper {
                 return doktor;
             } catch (SQLException ex) {
                 connection.rollback();
+                ex.printStackTrace();
             }
 
             connection.close();
         } catch (SQLException ex) {
-
+            System.out.println(ex);
         }
         return null;
     }
