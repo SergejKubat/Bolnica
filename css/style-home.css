@@ -1,0 +1,15 @@
+.sidebar {
+	-fx-background-color: #EF1940;
+}
+
+.button {
+	-fx-background-color: #EF1940;
+}
+
+.button:hover {
+	-fx-background-color: #C82A08;
+}
+
+.button:pressed {
+	-fx-background-color: #AF2406;
+}

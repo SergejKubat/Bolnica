@@ -10,7 +10,7 @@ public class Session {
     
     private final HashMap<String, String> attributes = new HashMap<>();
     
-    private Preferences storage = Preferences.userRoot();
+    private final Preferences storage = Preferences.userRoot();
     
     private Session() {}
     

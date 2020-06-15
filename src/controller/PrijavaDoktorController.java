@@ -6,10 +6,7 @@ import utils.Session;
 import utils.Validation;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,7 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -130,7 +126,7 @@ public class PrijavaDoktorController implements Initializable {
                 try {
                     prikaziPocetnu();
                 } catch (IOException ex) {
-                    ex.printStackTrace();
+                    System.out.println(ex);
                 }
             } else {
                 System.out.println("Pogresni kredencijali");
@@ -165,6 +161,7 @@ public class PrijavaDoktorController implements Initializable {
         stage.setTitle("Doktor - Pocetna");
         //reg.getIcons().add(new Image("file:img/globe.png"));
         stage.setResizable(false);
+        stage.sizeToScene();
         stage.show();
     }
 

@@ -17,6 +17,9 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        stage.setTitle("Prijava");
+        stage.setResizable(false);
+        stage.sizeToScene();
         Main.stage = stage;
         MetaData.parent = root;
         stage.show();

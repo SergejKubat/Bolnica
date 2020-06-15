@@ -20,6 +20,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
+import model.DoktorTip;
+import model.Odeljenje;
 
 public class DBHelper {
 
@@ -47,7 +49,7 @@ public class DBHelper {
                     if (result.getBoolean(14)) {
                         return doktor;
                     }
-                    doktor = new Doktor(result.getInt(1), result.getInt(2), result.getInt(3), result.getString(4), result.getString(5), result.getString(6),
+                    doktor = new Doktor(result.getInt(1), selectDoktorTip(result.getInt(2)), selectOdeljenje(result.getInt(3)), result.getString(4), result.getString(5), result.getString(6),
                             result.getDate(7).toString(), result.getString(8), result.getString(9), result.getString(10), result.getString(11), result.getString(12), result.getString(13),
                             result.getBoolean(14));
                 }
@@ -685,7 +687,7 @@ public class DBHelper {
                 statement.setInt(1, id);
                 ResultSet result = statement.executeQuery();
                 result.next();
-                Doktor doktor = new Doktor(result.getInt(1), result.getInt(2), result.getInt(3), result.getString(4), result.getString(5), result.getString(6),
+                Doktor doktor = new Doktor(result.getInt(1), selectDoktorTip(result.getInt(2)), selectOdeljenje(result.getInt(3)), result.getString(4), result.getString(5), result.getString(6),
                         result.getDate(7).toString(), result.getString(8), result.getString(9), result.getString(10), result.getString(11), result.getString(12), result.getString(13),
                         result.getBoolean(14));
                 connection.commit();
@@ -693,7 +695,7 @@ public class DBHelper {
                 return doktor;
             } catch (SQLException ex) {
                 connection.rollback();
-                ex.printStackTrace();
+                System.out.println(ex);
             }
 
             connection.close();
@@ -702,7 +704,61 @@ public class DBHelper {
         }
         return null;
     }
-    
+
+    public static DoktorTip selectDoktorTip(int id) {
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            connection.setAutoCommit(false);
+
+            String query = "SELECT * FROM doktortip WHERE doktortip.DT_ID = ?;";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, id);
+                ResultSet result = statement.executeQuery();
+                result.next();
+                DoktorTip doktorTip = new DoktorTip(result.getInt(1), result.getString(2));
+                connection.commit();
+                statement.close();
+                return doktorTip;
+            } catch (SQLException ex) {
+                connection.rollback();
+                System.out.println(ex);
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
+
+    public static Odeljenje selectOdeljenje(int id) {
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            connection.setAutoCommit(false);
+
+            String query = "SELECT * FROM odeljenje WHERE odeljenje.ODELJENJE_ID = ?;";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, id);
+                ResultSet result = statement.executeQuery();
+                result.next();
+                Odeljenje odeljenje = new Odeljenje(result.getInt(1), result.getInt(2), result.getInt(3), result.getString(4), result.getString(5));
+                connection.commit();
+                statement.close();
+                return odeljenje;
+            } catch (SQLException ex) {
+                connection.rollback();
+                System.out.println(ex);
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
+
     public static Doktor selectDoktorByEmail(String email) {
         try {
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
@@ -714,7 +770,7 @@ public class DBHelper {
                 statement.setString(1, email);
                 ResultSet result = statement.executeQuery();
                 result.next();
-                Doktor doktor = new Doktor(result.getInt(1), result.getInt(2), result.getInt(3), result.getString(4), result.getString(5), result.getString(6),
+                Doktor doktor = new Doktor(result.getInt(1), selectDoktorTip(result.getInt(2)), selectOdeljenje(result.getInt(3)), result.getString(4), result.getString(5), result.getString(6),
                         result.getDate(7).toString(), result.getString(8), result.getString(9), result.getString(10), result.getString(11), result.getString(12), result.getString(13),
                         result.getBoolean(14));
                 connection.commit();
@@ -729,7 +785,7 @@ public class DBHelper {
 
         }
         return null;
-    } 
+    }
 
     public static List<Bolest> selectAllBolest() {
         try {
@@ -823,9 +879,9 @@ public class DBHelper {
                 List<Doktor> doktori = new ArrayList<>();
                 ResultSet result = statement.executeQuery();
                 while (result.next()) {
-                    doktori.add(new Doktor(result.getInt(1), result.getInt(2), result.getInt(3), result.getString(4), result.getString(5), result.getString(6),
-                            result.getDate(7).toString(), result.getString(8), result.getString(9), result.getString(10), result.getString(11), result.getString(12), result.getString(13),
-                            result.getBoolean(14)));
+                    doktori.add(new Doktor(result.getInt(1), selectDoktorTip(result.getInt(2)), selectOdeljenje(result.getInt(3)), result.getString(4), result.getString(5), result.getString(6),
+                        result.getDate(7).toString(), result.getString(8), result.getString(9), result.getString(10), result.getString(11), result.getString(12), result.getString(13),
+                        result.getBoolean(14)));
                 }
                 connection.commit();
                 statement.close();

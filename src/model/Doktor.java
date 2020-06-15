@@ -3,8 +3,8 @@ package model;
 public class Doktor {
     
     private int id;
-    private int doktorTipId;
-    private int odeljenjeId;
+    private DoktorTip doktorTipId;
+    private Odeljenje odeljenjeId;
     private String ime;
     private String prezime;
     private String pol;
@@ -20,7 +20,7 @@ public class Doktor {
     public Doktor() {
     }
 
-    public Doktor(int id, int doktorTipId, int odeljenjeId, String ime, String prezime, String pol, String datumRodjenja, String jmbg, String email, String brojTelefona, String adresa, String lozinka, String opis, boolean blokiran) {
+    public Doktor(int id, DoktorTip doktorTipId, Odeljenje odeljenjeId, String ime, String prezime, String pol, String datumRodjenja, String jmbg, String email, String brojTelefona, String adresa, String lozinka, String opis, boolean blokiran) {
         this.id = id;
         this.doktorTipId = doktorTipId;
         this.odeljenjeId = odeljenjeId;
@@ -45,19 +45,19 @@ public class Doktor {
         this.id = id;
     }
 
-    public int getDoktorTipId() {
+    public DoktorTip getDoktorTipId() {
         return doktorTipId;
     }
 
-    public void setDoktorTipId(int doktorTipId) {
+    public void setDoktorTipId(DoktorTip doktorTipId) {
         this.doktorTipId = doktorTipId;
     }
 
-    public int getOdeljenjeId() {
+    public Odeljenje getOdeljenjeId() {
         return odeljenjeId;
     }
 
-    public void setOdeljenjeId(int odeljenjeId) {
+    public void setOdeljenjeId(Odeljenje odeljenjeId) {
         this.odeljenjeId = odeljenjeId;
     }
 
