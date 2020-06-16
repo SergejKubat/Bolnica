@@ -3,12 +3,12 @@ package model;
 public class OdeljenjeTip {
     
     private int id;
-    private int naziv;
+    private String naziv;
 
     public OdeljenjeTip() {
     }
 
-    public OdeljenjeTip(int id, int naziv) {
+    public OdeljenjeTip(int id, String naziv) {
         this.id = id;
         this.naziv = naziv;
     }
@@ -21,11 +21,11 @@ public class OdeljenjeTip {
         this.id = id;
     }
 
-    public int getNaziv() {
+    public String getNaziv() {
         return naziv;
     }
 
-    public void setNaziv(int naziv) {
+    public void setNaziv(String naziv) {
         this.naziv = naziv;
     }
     

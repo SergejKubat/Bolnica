@@ -3,14 +3,14 @@ package model;
 public class Dijagnoza {
     
     private int id;
-    private int bolestId;
-    private int pregledId;
+    private Bolest bolestId;
+    private Pregled pregledId;
     private String opis;
 
     public Dijagnoza() {
     }
 
-    public Dijagnoza(int id, int bolestId, int pregledId, String opis) {
+    public Dijagnoza(int id, Bolest bolestId, Pregled pregledId, String opis) {
         this.id = id;
         this.bolestId = bolestId;
         this.pregledId = pregledId;
@@ -25,19 +25,19 @@ public class Dijagnoza {
         this.id = id;
     }
 
-    public int getBolestId() {
+    public Bolest getBolestId() {
         return bolestId;
     }
 
-    public void setBolestId(int bolestId) {
+    public void setBolestId(Bolest bolestId) {
         this.bolestId = bolestId;
     }
 
-    public int getPregledId() {
+    public Pregled getPregledId() {
         return pregledId;
     }
 
-    public void setPregledId(int pregledId) {
+    public void setPregledId(Pregled pregledId) {
         this.pregledId = pregledId;
     }
 

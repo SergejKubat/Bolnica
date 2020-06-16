@@ -3,14 +3,14 @@ package model;
 public class Lek {
     
     private int id;
-    private int kompanijaId;
+    private Kompanija kompanijaId;
     private String naziv;
     private String tip;
 
     public Lek() {
     }
 
-    public Lek(int id, int kompanijaId, String naziv, String tip) {
+    public Lek(int id, Kompanija kompanijaId, String naziv, String tip) {
         this.id = id;
         this.kompanijaId = kompanijaId;
         this.naziv = naziv;
@@ -25,11 +25,11 @@ public class Lek {
         this.id = id;
     }
 
-    public int getKompanijaId() {
+    public Kompanija getKompanijaId() {
         return kompanijaId;
     }
 
-    public void setKompanijaId(int kompanijaId) {
+    public void setKompanijaId(Kompanija kompanijaId) {
         this.kompanijaId = kompanijaId;
     }
 

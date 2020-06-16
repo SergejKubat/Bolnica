@@ -3,13 +3,13 @@ package model;
 public class Recept {
     
     private int id;
-    private int lekId;
-    private int dijagnozaId;
+    private Lek lekId;
+    private Dijagnoza dijagnozaId;
 
     public Recept() {
     }
 
-    public Recept(int id, int lekId, int dijagnozaId) {
+    public Recept(int id, Lek lekId, Dijagnoza dijagnozaId) {
         this.id = id;
         this.lekId = lekId;
         this.dijagnozaId = dijagnozaId;
@@ -23,19 +23,19 @@ public class Recept {
         this.id = id;
     }
 
-    public int getLekId() {
+    public Lek getLekId() {
         return lekId;
     }
 
-    public void setLekId(int lekId) {
+    public void setLekId(Lek lekId) {
         this.lekId = lekId;
     }
 
-    public int getDijagnozaId() {
+    public Dijagnoza getDijagnozaId() {
         return dijagnozaId;
     }
 
-    public void setDijagnozaId(int dijagnozaId) {
+    public void setDijagnozaId(Dijagnoza dijagnozaId) {
         this.dijagnozaId = dijagnozaId;
     }
     

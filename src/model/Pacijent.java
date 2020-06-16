@@ -3,7 +3,7 @@ package model;
 public class Pacijent {
     
     private int pacijentId;
-    private int doktorId;
+    private Doktor doktorId;
     private String ime;
     private String prezime;
     private String pol;
@@ -16,7 +16,7 @@ public class Pacijent {
     public Pacijent() {
     }
 
-    public Pacijent(int pacijentId, int doktorId, String ime, String prezime, String pol, String datumRodjenja, String jmbg, String email, String brojTelefona, String adresa) {
+    public Pacijent(int pacijentId, Doktor doktorId, String ime, String prezime, String pol, String datumRodjenja, String jmbg, String email, String brojTelefona, String adresa) {
         this.pacijentId = pacijentId;
         this.doktorId = doktorId;
         this.ime = ime;
@@ -37,11 +37,11 @@ public class Pacijent {
         this.pacijentId = pacijentId;
     }
 
-    public int getDoktorId() {
+    public Doktor getDoktorId() {
         return doktorId;
     }
 
-    public void setDoktorId(int doktorId) {
+    public void setDoktorId(Doktor doktorId) {
         this.doktorId = doktorId;
     }
 

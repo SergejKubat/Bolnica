@@ -3,19 +3,19 @@ package model;
 public class Pregled {
     
     private int id;
-    private int pacijentId;
-    private int doktorOd;
-    private int dijagnozaId;
+    private Pacijent pacijentId;
+    private Doktor doktorId;
+    private Dijagnoza dijagnozaId;
     private String datum;
     private String vreme;
 
     public Pregled() {
     }
 
-    public Pregled(int id, int pacijentId, int doktorOd, int dijagnozaId, String datum, String vreme) {
+    public Pregled(int id, Pacijent pacijentId, Doktor doktorId, Dijagnoza dijagnozaId, String datum, String vreme) {
         this.id = id;
         this.pacijentId = pacijentId;
-        this.doktorOd = doktorOd;
+        this.doktorId = doktorId;
         this.dijagnozaId = dijagnozaId;
         this.datum = datum;
         this.vreme = vreme;
@@ -29,27 +29,27 @@ public class Pregled {
         this.id = id;
     }
 
-    public int getPacijentId() {
+    public Pacijent getPacijentId() {
         return pacijentId;
     }
 
-    public void setPacijentId(int pacijentId) {
+    public void setPacijentId(Pacijent pacijentId) {
         this.pacijentId = pacijentId;
     }
 
-    public int getDoktorOd() {
-        return doktorOd;
+    public Doktor getDoktorId() {
+        return doktorId;
     }
 
-    public void setDoktorOd(int doktorOd) {
-        this.doktorOd = doktorOd;
+    public void setDoktorOd(Doktor doktorId) {
+        this.doktorId = doktorId;
     }
 
-    public int getDijagnozaId() {
+    public Dijagnoza getDijagnozaId() {
         return dijagnozaId;
     }
 
-    public void setDijagnozaId(int dijagnozaId) {
+    public void setDijagnozaId(Dijagnoza dijagnozaId) {
         this.dijagnozaId = dijagnozaId;
     }
 

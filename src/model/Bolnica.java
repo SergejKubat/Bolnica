@@ -3,8 +3,8 @@ package model;
 public class Bolnica {
     
     private int id;
-    private int bolnicaTipId;
-    private int gradId;
+    private BolnicaTip bolnicaTipId;
+    private Grad gradId;
     private String ime;
     private String adresa;
     private String opis;
@@ -12,7 +12,7 @@ public class Bolnica {
     public Bolnica() {
     }
 
-    public Bolnica(int id, int bolnicaTipId, int gradId, String ime, String adresa, String opis) {
+    public Bolnica(int id, BolnicaTip bolnicaTipId, Grad gradId, String ime, String adresa, String opis) {
         this.id = id;
         this.bolnicaTipId = bolnicaTipId;
         this.gradId = gradId;
@@ -29,19 +29,19 @@ public class Bolnica {
         this.id = id;
     }
 
-    public int getBolnicaTipId() {
+    public BolnicaTip getBolnicaTipId() {
         return bolnicaTipId;
     }
 
-    public void setBolnicaTipId(int bolnicaTipId) {
+    public void setBolnicaTipId(BolnicaTip bolnicaTipId) {
         this.bolnicaTipId = bolnicaTipId;
     }
 
-    public int getGradId() {
+    public Grad getGradId() {
         return gradId;
     }
 
-    public void setGradId(int gradId) {
+    public void setGradId(Grad gradId) {
         this.gradId = gradId;
     }
 

@@ -3,15 +3,15 @@ package model;
 public class Odeljenje {
     
     private int id;
-    private int bolnicaId;
-    private int tipId;
+    private Bolnica bolnicaId;
+    private OdeljenjeTip tipId;
     private String naziv;
     private String opis;
 
     public Odeljenje() {
     }
 
-    public Odeljenje(int id, int bolnicaId, int tipId, String naziv, String opis) {
+    public Odeljenje(int id, Bolnica bolnicaId, OdeljenjeTip tipId, String naziv, String opis) {
         this.id = id;
         this.bolnicaId = bolnicaId;
         this.tipId = tipId;
@@ -27,19 +27,19 @@ public class Odeljenje {
         this.id = id;
     }
 
-    public int getBolnicaId() {
+    public Bolnica getBolnicaId() {
         return bolnicaId;
     }
 
-    public void setBolnicaId(int bolnicaId) {
+    public void setBolnicaId(Bolnica bolnicaId) {
         this.bolnicaId = bolnicaId;
     }
 
-    public int getTipId() {
+    public OdeljenjeTip getTipId() {
         return tipId;
     }
 
-    public void setTipId(int tipId) {
+    public void setTipId(OdeljenjeTip tipId) {
         this.tipId = tipId;
     }
 
