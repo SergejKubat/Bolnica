@@ -8,12 +8,12 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="774.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProfilController">
    <children>
-      <Label fx:id="dobrodoslica" layoutX="14.0" layoutY="14.0" text="Dobordošli,">
+      <Label fx:id="dobrodoslica" layoutX="20.0" layoutY="20.0" text="Dobordošli,">
          <font>
             <Font name="Ebrima Bold" size="48.0" />
          </font>
       </Label>
-      <VBox layoutX="14.0" layoutY="93.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0">
+      <VBox layoutX="20.0" layoutY="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0">
          <children>
             <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0">
                <children>
@@ -132,5 +132,10 @@
             </Pane>
          </children>
       </VBox>
+      <Label layoutX="20.0" layoutY="100.0" text="Na ovoj stranici možete videti podatke o svom nalogu." textFill="#a3a3a3">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

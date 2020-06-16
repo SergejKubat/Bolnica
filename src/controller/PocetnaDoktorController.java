@@ -35,13 +35,12 @@ public class PocetnaDoktorController implements Initializable {
     @FXML
     private Pane prikaz;
 
-    Doktor doktor;
+    private Doktor doktor;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Session sesija = Session.getInstance();
         int id = Integer.parseInt(sesija.getAttribute("id"));
-        System.out.println(id);
         doktor = DBHelper.selectDoktor(id);
         if (doktor != null) {
             imePrezime.setText(doktor.getIme() + " " + doktor.getPrezime());

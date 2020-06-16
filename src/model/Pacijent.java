@@ -111,7 +111,7 @@ public class Pacijent {
 
     @Override
     public String toString() {
-        return "Pacijent{" + "pacijentId=" + pacijentId + ", doktorId=" + doktorId + ", ime=" + ime + ", prezime=" + prezime + ", pol=" + pol + ", datumRodjenja=" + datumRodjenja + ", jmbg=" + jmbg + ", email=" + email + ", brojTelefona=" + brojTelefona + ", adresa=" + adresa + '}';
+        return ime + " " + prezime;
     }
     
 }

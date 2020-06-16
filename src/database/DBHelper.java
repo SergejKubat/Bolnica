@@ -557,11 +557,12 @@ public class DBHelper {
                 return pacijenti;
             } catch (SQLException ex) {
                 connection.rollback();
+                System.out.println(ex);
             }
 
             connection.close();
         } catch (SQLException ex) {
-
+            System.out.println(ex);
         }
         return null;
     }

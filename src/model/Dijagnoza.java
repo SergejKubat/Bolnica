@@ -48,4 +48,9 @@ public class Dijagnoza {
     public void setOpis(String opis) {
         this.opis = opis;
     }
+
+    @Override
+    public String toString() {
+        return opis;
+    }
 }
