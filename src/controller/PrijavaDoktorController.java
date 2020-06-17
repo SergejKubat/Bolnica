@@ -53,20 +53,31 @@ public class PrijavaDoktorController implements Initializable {
     @FXML
     private Label lozinkaSavet;
 
+    private Session sesija;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        /*sesija = Session.getInstance();
+        String id = sesija.getAttribute("id");
+        if (id != null) {
+            try {
+                prikaziPocetnu();
+            } catch (IOException ex) {
+                System.out.println(ex);
+            }
+        } else {*/
         emailError.setVisible(false);
         lozinkaError.setVisible(false);
         emailSavet.setVisible(false);
         lozinkaSavet.setVisible(false);
         prijavaBtn.setDisable(true);
+        /*}*/
     }
 
     @FXML
     public void validateEmailInput(KeyEvent e) {
+
         String email = emailInput.getText();
-        //Date datum = new Date(11, 12, 1981);
-        //DBHelper.insertDoktor(1, 1, "Nikola", "Nikolic", "muski", datum, "1234567890123", "nikola@gmail.com", "061-453-8239", "Mije Kovecavica", "Testovi123@", "Opis..."); 
         if (!Validation.proveriEmail(email)) {
             emailError.setVisible(true);
             emailSavet.setVisible(true);
@@ -120,7 +131,7 @@ public class PrijavaDoktorController implements Initializable {
         if (valid) {
             Doktor doktor = DBHelper.prijavaDoktor(email, lozinka);
             if (doktor != null) {
-                Session sesija = Session.getInstance();
+                sesija = Session.getInstance();
                 sesija.setAttribute("id", String.valueOf(doktor.getId()));
                 System.out.println(doktor.toString());
                 try {
@@ -149,7 +160,7 @@ public class PrijavaDoktorController implements Initializable {
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(adminLogin);
     }
-    
+
     @FXML
     public void prikaziPocetnu() throws IOException {
         emailInput.getScene().getWindow().hide();

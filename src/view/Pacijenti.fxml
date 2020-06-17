@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PacijentiController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="724.0" prefWidth="774.0" stylesheets="file:css/pacijenti.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PacijentiController">
    <children>
       <Label layoutX="20.0" layoutY="20.0" text="Pacijenti">
          <font>
             <Font name="Ebrima" size="48.0" />
          </font>
       </Label>
-      <TableView fx:id="tabela" layoutX="37.0" layoutY="393.0" prefHeight="350.0" prefWidth="700.0">
+      <TableView fx:id="tabela" layoutY="402.0" onMouseClicked="#prikaziPacijenta" prefHeight="367.0" prefWidth="774.0">
         <columns>
           <TableColumn fx:id="imeColumn" prefWidth="75.0" text="Ime" />
-          <TableColumn fx:id="prezimeColumn" prefWidth="75.0" text="Prezime" />
-            <TableColumn fx:id="polColumn" prefWidth="75.0" text="Pol" />
-            <TableColumn fx:id="datumRodjenjaColumn" prefWidth="99.0" text="Datum rodjenja" />
-            <TableColumn fx:id="jmbgColumn" prefWidth="117.0" text="JMBG" />
-            <TableColumn fx:id="emailColumn" text="Email" />
-            <TableColumn fx:id="brojTelefonaColumn" prefWidth="98.0" text="Broj telefona" />
-            <TableColumn fx:id="adresaColumn" text="Adresa" />
+          <TableColumn fx:id="prezimeColumn" prefWidth="81.0" text="Prezime" />
+            <TableColumn fx:id="polColumn" prefWidth="76.0" text="Pol" />
+            <TableColumn fx:id="datumRodjenjaColumn" prefWidth="105.0" text="Datum rodjenja" />
+            <TableColumn fx:id="jmbgColumn" prefWidth="104.0" text="JMBG" />
+            <TableColumn fx:id="emailColumn" prefWidth="100.0" text="Email" />
+            <TableColumn fx:id="brojTelefonaColumn" prefWidth="97.0" text="Broj telefona" />
+            <TableColumn fx:id="adresaColumn" prefWidth="135.0" text="Adresa" />
         </columns>
       </TableView>
       <Label layoutX="20.0" layoutY="100.0" text="Na ovoj stranici možete videti podatke o vašim pacijentima." textFill="#a3a3a3">
@@ -30,5 +32,140 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Pane layoutX="20.0" layoutY="136.0" prefHeight="240.0" prefWidth="600.0">
+         <children>
+            <VBox prefHeight="240.0" prefWidth="400.0">
+               <children>
+                  <Pane prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="imeText" layoutX="5.0" layoutY="5.0" text="Ime:" visible="false">
+                           <font>
+                              <Font name="Ebrima Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="ime" layoutX="150.0" layoutY="5.0" text="Text" visible="false">
+                           <font>
+                              <Font name="Ebrima" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="prezimeText" layoutX="5.0" layoutY="5.0" text="Prezime:" visible="false">
+                           <font>
+                              <Font name="Ebrima Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="prezime" layoutX="150.0" layoutY="5.0" text="Text" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="polText" layoutX="5.0" layoutY="5.0" text="Pol:" visible="false">
+                           <font>
+                              <Font name="Ebrima Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="pol" layoutX="150.0" layoutY="5.0" text="Text" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="datumRodjenjaText" layoutX="5.0" layoutY="5.0" text="Datum rodjenja:" visible="false">
+                           <font>
+                              <Font name="Ebrima Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="datumRodjenja" layoutX="150.0" layoutY="5.0" text="Text" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="jmbgText" layoutX="5.0" layoutY="5.0" text="JMBG:" visible="false">
+                           <font>
+                              <Font name="Ebrima Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="jmbg" layoutX="150.0" layoutY="5.0" text="Text" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="emailText" layoutX="5.0" layoutY="5.0" text="Email:" visible="false">
+                           <font>
+                              <Font name="Ebrima Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="email" layoutX="150.0" layoutY="5.0" text="Text" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="brojTelefonaText" layoutX="5.0" layoutY="5.0" text="Broj telefona:" visible="false">
+                           <font>
+                              <Font name="Ebrima Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="brojTelefona" layoutX="150.0" layoutY="5.0" text="Text" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="30.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="adresaText" layoutX="5.0" layoutY="5.0" text="Adresa:" visible="false">
+                           <font>
+                              <Font name="Ebrima Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="adresa" layoutX="150.0" layoutY="5.0" text="Text" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+            <Button fx:id="zakazivanjePregleda" layoutX="400.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Zakazivanje pregleda" visible="false">
+               <font>
+                  <Font name="Ebrima" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="pregledRecepata" layoutX="400.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Pregled recepata" visible="false">
+               <font>
+                  <Font name="Ebrima" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="istorijaBolesti" layoutX="400.0" layoutY="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Istorija bolesti" visible="false">
+               <font>
+                  <Font name="Ebrima" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
    </children>
 </Pane>

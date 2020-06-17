@@ -141,8 +141,8 @@ public class DBHelper {
             String query = "INSERT INTO pregled (PACIJENT_ID, DOKTOR_ID, DIJAGNOZA_ID, PREGLED_DATUM, PREGLED_VREME) VALUES (?, ?, ?, ?, ?);";
 
             try (PreparedStatement statement = connection.prepareStatement(query)) {
-                statement.setInt(1, doktorId);
-                statement.setInt(2, pacijentId);
+                statement.setInt(1, pacijentId);
+                statement.setInt(2, doktorId);
                 statement.setString(3, datumPregleda);
                 statement.setString(4, vremePregleda);
                 statement.executeUpdate();
@@ -150,11 +150,12 @@ public class DBHelper {
                 statement.close();
             } catch (SQLException ex) {
                 connection.rollback();
+                System.out.println(ex);
             }
 
             connection.close();
         } catch (SQLException ex) {
-
+            System.out.println(ex);
         }
     }
 
