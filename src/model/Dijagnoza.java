@@ -1,11 +1,14 @@
 package model;
 
+import java.util.List;
+
 public class Dijagnoza {
     
     private int id;
     private Bolest bolestId;
     private Pregled pregledId;
     private String opis;
+    private List<Recept> recepti;
 
     public Dijagnoza() {
     }
@@ -52,5 +55,13 @@ public class Dijagnoza {
     @Override
     public String toString() {
         return opis;
+    }
+
+    public List<Recept> getRecepti() {
+        return recepti;
+    }
+
+    public void setRecepti(List<Recept> recepti) {
+        this.recepti = recepti;
     }
 }

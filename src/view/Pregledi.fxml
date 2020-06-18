@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PreglediController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="774.0" stylesheets="@file:css/pacijenti.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PreglediController">
    <children>
       <Label layoutX="20.0" layoutY="20.0" text="Pregledi">
          <font>
@@ -19,13 +20,13 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TableView fx:id="tabela" layoutX="50.0" layoutY="450.0" prefHeight="300.0" prefWidth="300.0">
+      <TableView fx:id="zakazaniPreglediTabela" layoutX="50.0" layoutY="450.0" onMouseClicked="#prikaziZakazanPregled" prefHeight="300.0" prefWidth="300.0">
         <columns>
           <TableColumn fx:id="datumColumn" prefWidth="150.0" text="Datum" />
             <TableColumn fx:id="vremeColumn" prefWidth="150.0" text="Vreme" />
         </columns>
       </TableView>
-      <TableView fx:id="tabela1" layoutX="424.0" layoutY="450.0" prefHeight="300.0" prefWidth="300.0">
+      <TableView fx:id="obavljeniPreglediTabela" layoutX="424.0" layoutY="450.0" onMouseClicked="#prikaziObavljenPregled" prefHeight="300.0" prefWidth="300.0">
          <columns>
             <TableColumn fx:id="datumColumn1" prefWidth="150.0" text="Datum" />
             <TableColumn fx:id="vremeColumn1" prefWidth="150.0" text="Vreme" />
@@ -41,25 +42,81 @@
             <Font name="Ebrima" size="18.0" />
          </font>
       </Label>
-      <Pane layoutX="20.0" layoutY="139.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="500.0">
+      <Pane layoutX="200.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="500.0">
          <children>
-            <VBox prefHeight="240.0" prefWidth="300.0">
+            <VBox prefHeight="240.0" prefWidth="250.0">
                <children>
                   <Pane prefHeight="60.0" prefWidth="300.0">
                      <children>
-                        <Label layoutX="14.0" layoutY="22.0" text="Pacijent">
+                        <Label fx:id="pacijentText" layoutX="20.0" layoutY="20.0" text="Pacijent:" visible="false">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
+                        <Label fx:id="pacijent" layoutX="100.0" layoutY="20.0" text="Text" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
-                  <Pane prefHeight="60.0" prefWidth="300.0" />
-                  <Pane prefHeight="60.0" prefWidth="300.0" />
-                  <Pane prefHeight="60.0" prefWidth="300.0" />
+                  <Pane prefHeight="60.0" prefWidth="300.0">
+                     <children>
+                        <Label fx:id="datumText" layoutX="20.0" layoutY="20.0" text="Datum:" visible="false">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="datum" layoutX="100.0" layoutY="20.0" text="Text" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
+                  <Pane prefHeight="60.0" prefWidth="300.0">
+                     <children>
+                        <Label fx:id="vremeText" layoutX="20.0" layoutY="20.0" text="Vreme:" visible="false">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="vreme" layoutX="100.0" layoutY="20.0" text="Text" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
+                  <Pane prefHeight="60.0" prefWidth="300.0">
+                     <children>
+                        <Label fx:id="odrzanText" layoutX="20.0" layoutY="20.0" text="Odrzan:" visible="false">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="odrzan" layoutX="100.0" layoutY="20.0" text="Text" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children></Pane>
                </children>
             </VBox>
+            <Button fx:id="rezultatPregleda" layoutX="300.0" layoutY="120.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Rezultat pregleda" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="dodajDijagnozu" layoutX="300.0" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Dodaj dijagnozu" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
+      <Button fx:id="noviPregled" layoutX="20.0" layoutY="245.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#dodajPregled" prefHeight="30.0" prefWidth="150.0" text="Novi pregled">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

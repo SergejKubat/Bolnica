@@ -138,13 +138,14 @@ public class DBHelper {
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             connection.setAutoCommit(false);
 
-            String query = "INSERT INTO pregled (PACIJENT_ID, DOKTOR_ID, DIJAGNOZA_ID, PREGLED_DATUM, PREGLED_VREME) VALUES (?, ?, ?, ?, ?);";
+            String query = "INSERT INTO pregled (PACIJENT_ID, DOKTOR_ID, PREGLED_DATUM, PREGLED_VREME, PREGLED_ODRZAN) VALUES (?, ?, ?, ?, ?);";
 
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setInt(1, pacijentId);
                 statement.setInt(2, doktorId);
                 statement.setString(3, datumPregleda);
                 statement.setString(4, vremePregleda);
+                statement.setBoolean(5, false);
                 statement.executeUpdate();
                 connection.commit();
                 statement.close();
@@ -633,7 +634,7 @@ public class DBHelper {
                 statement.setInt(1, id);
                 ResultSet result = statement.executeQuery();
                 result.next();
-                Pregled pregled = new Pregled(result.getInt(1), selectPacijent(result.getInt(2)), selectDoktor(result.getInt(3)), selectDijagnoza(result.getInt(4)), result.getString(5), result.getString(6));
+                Pregled pregled = new Pregled(result.getInt(1), selectPacijent(result.getInt(2)), selectDoktor(result.getInt(3)), result.getString(4), result.getString(5), result.getBoolean(6));
                 connection.commit();
                 statement.close();
                 return pregled;
@@ -661,7 +662,7 @@ public class DBHelper {
                 List<Pregled> pregledi = new ArrayList<>();
                 ResultSet result = statement.executeQuery();
                 while (result.next()) {
-                    pregledi.add(new Pregled(result.getInt(1), selectPacijent(result.getInt(2)), selectDoktor(result.getInt(3)), selectDijagnoza(result.getInt(4)), result.getString(5), result.getString(6)));
+                    pregledi.add(new Pregled(result.getInt(1), selectPacijent(result.getInt(2)), selectDoktor(result.getInt(3)), result.getString(4), result.getString(5), result.getBoolean(6)));
                 }
                 connection.commit();
                 statement.close();

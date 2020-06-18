@@ -1,10 +1,13 @@
 package model;
 
+import java.util.List;
+
 public class Bolest {
     
     private int id;
     private String naziv;
     private String opis;
+    private List<Dijagnoza> dijagnoze;
 
     public Bolest() {
     }
@@ -37,6 +40,14 @@ public class Bolest {
 
     public void setOpis(String opis) {
         this.opis = opis;
+    }
+
+    public List<Dijagnoza> getDijagnoze() {
+        return dijagnoze;
+    }
+
+    public void setDijagnoze(List<Dijagnoza> dijagnoze) {
+        this.dijagnoze = dijagnoze;
     }
     
 }

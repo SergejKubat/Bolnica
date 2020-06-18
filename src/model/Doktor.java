@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Doktor {
     
     private int id;
@@ -16,6 +18,8 @@ public class Doktor {
     private String lozinka;
     private String opis;
     private boolean blokiran;
+    private List<Pacijent> pacijenti;
+    private List<Pregled> pregledi;
 
     public Doktor() {
     }
@@ -147,6 +151,22 @@ public class Doktor {
 
     public void setBlokiran(boolean blokiran) {
         this.blokiran = blokiran;
+    }
+
+    public List<Pacijent> getPacijenti() {
+        return pacijenti;
+    }
+
+    public void setPacijenti(List<Pacijent> pacijenti) {
+        this.pacijenti = pacijenti;
+    }
+
+    public List<Pregled> getPregledi() {
+        return pregledi;
+    }
+
+    public void setPregledi(List<Pregled> pregledi) {
+        this.pregledi = pregledi;
     }
     
 }

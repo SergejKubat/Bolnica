@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="500.0" stylesheets="@../../css/pacijenti.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controller.RezultatPregledaController">
+   <children>
+      <Button fx:id="izlaz" layoutX="424.0" layoutY="361.0" mnemonicParsing="false" onAction="#zatvori" text="U redu">
+         <font>
+            <Font name="Ebrima" size="14.0" />
+         </font>
+      </Button>
+      <TableView fx:id="dijagnoze" layoutX="10.0" layoutY="10.0" prefHeight="300.0" prefWidth="480.0">
+        <columns>
+          <TableColumn prefWidth="110.0" text="Bolest" />
+          <TableColumn prefWidth="369.0" text="Opis dijagnoze" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

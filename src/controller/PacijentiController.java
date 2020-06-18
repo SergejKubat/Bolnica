@@ -167,6 +167,7 @@ public class PacijentiController implements Initializable {
         Pacijent pacijent = tabela.getSelectionModel().getSelectedItem();
 
         if (pacijent != null) {
+            
             prikaziTekst();
 
             sesija.setAttribute("izabraniPacijent", String.valueOf(pacijent.getPacijentId()));
@@ -239,6 +240,7 @@ public class PacijentiController implements Initializable {
             //reg.getIcons().add(new Image("file:img/globe.png"));
             stage.setResizable(false);
             stage.sizeToScene();
+            stage.requestFocus();
             stage.show();
         } catch (IOException ex) {
             System.out.println(ex);

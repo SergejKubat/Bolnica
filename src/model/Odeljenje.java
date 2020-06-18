@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Odeljenje {
     
     private int id;
@@ -7,6 +9,7 @@ public class Odeljenje {
     private OdeljenjeTip tipId;
     private String naziv;
     private String opis;
+    private List<Doktor> doktori;
 
     public Odeljenje() {
     }
@@ -57,6 +60,14 @@ public class Odeljenje {
 
     public void setOpis(String opis) {
         this.opis = opis;
+    }
+
+    public List<Doktor> getDoktori() {
+        return doktori;
+    }
+
+    public void setDoktori(List<Doktor> doktori) {
+        this.doktori = doktori;
     }
     
 }

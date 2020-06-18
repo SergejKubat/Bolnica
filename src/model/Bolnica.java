@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public class Bolnica {
     
     private int id;
@@ -8,6 +10,7 @@ public class Bolnica {
     private String ime;
     private String adresa;
     private String opis;
+    private List<Odeljenje> odeljenja;
 
     public Bolnica() {
     }
@@ -67,6 +70,14 @@ public class Bolnica {
 
     public void setOpis(String opis) {
         this.opis = opis;
+    }
+
+    public List<Odeljenje> getOdeljenja() {
+        return odeljenja;
+    }
+
+    public void setOdeljenja(List<Odeljenje> odeljenja) {
+        this.odeljenja = odeljenja;
     }
     
 }

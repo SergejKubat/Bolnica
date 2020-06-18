@@ -1,24 +1,27 @@
 package model;
 
+import java.util.List;
+
 public class Pregled {
-    
+
     private int id;
     private Pacijent pacijentId;
     private Doktor doktorId;
-    private Dijagnoza dijagnozaId;
     private String datum;
     private String vreme;
+    private boolean odrzan;
+    private List<Dijagnoza> dijagnoza;
 
     public Pregled() {
     }
 
-    public Pregled(int id, Pacijent pacijentId, Doktor doktorId, Dijagnoza dijagnozaId, String datum, String vreme) {
+    public Pregled(int id, Pacijent pacijentId, Doktor doktorId, String datum, String vreme, boolean odrzan) {
         this.id = id;
         this.pacijentId = pacijentId;
         this.doktorId = doktorId;
-        this.dijagnozaId = dijagnozaId;
         this.datum = datum;
         this.vreme = vreme;
+        this.odrzan = odrzan;
     }
 
     public int getId() {
@@ -45,14 +48,6 @@ public class Pregled {
         this.doktorId = doktorId;
     }
 
-    public Dijagnoza getDijagnozaId() {
-        return dijagnozaId;
-    }
-
-    public void setDijagnozaId(Dijagnoza dijagnozaId) {
-        this.dijagnozaId = dijagnozaId;
-    }
-
     public String getDatum() {
         return datum;
     }
@@ -68,5 +63,21 @@ public class Pregled {
     public void setVreme(String vreme) {
         this.vreme = vreme;
     }
-    
+
+    public boolean isOdrzan() {
+        return odrzan;
+    }
+
+    public void setOdrzan(boolean odrzan) {
+        this.odrzan = odrzan;
+    }
+
+    public List<Dijagnoza> getDijagnoza() {
+        return dijagnoza;
+    }
+
+    public void setDijagnoza(List<Dijagnoza> dijagnoza) {
+        this.dijagnoza = dijagnoza;
+    }
+
 }

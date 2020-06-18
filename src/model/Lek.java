@@ -1,11 +1,14 @@
 package model;
 
+import java.util.List;
+
 public class Lek {
     
     private int id;
     private Kompanija kompanijaId;
     private String naziv;
     private String tip;
+    private List<Recept> recepti;
 
     public Lek() {
     }
@@ -47,6 +50,14 @@ public class Lek {
 
     public void setTip(String tip) {
         this.tip = tip;
+    }
+
+    public List<Recept> getRecepti() {
+        return recepti;
+    }
+
+    public void setRecepti(List<Recept> recepti) {
+        this.recepti = recepti;
     }
     
 }

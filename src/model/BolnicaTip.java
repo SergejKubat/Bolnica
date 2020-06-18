@@ -1,9 +1,12 @@
 package model;
 
+import java.util.List;
+
 public class BolnicaTip {
     
     private int id;
     private String naziv;
+    private List<Bolnica> bolnice;
 
     public BolnicaTip() {
     }
@@ -27,6 +30,14 @@ public class BolnicaTip {
 
     public void setNaziv(String naziv) {
         this.naziv = naziv;
+    }
+
+    public List<Bolnica> getBolnice() {
+        return bolnice;
+    }
+
+    public void setBolnice(List<Bolnica> bolnice) {
+        this.bolnice = bolnice;
     }
     
 }
