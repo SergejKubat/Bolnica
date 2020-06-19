@@ -49,5 +49,10 @@ public class Bolest {
     public void setDijagnoze(List<Dijagnoza> dijagnoze) {
         this.dijagnoze = dijagnoze;
     }
+
+    @Override
+    public String toString() {
+        return naziv;
+    }
     
 }

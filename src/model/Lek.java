@@ -59,5 +59,10 @@ public class Lek {
     public void setRecepti(List<Recept> recepti) {
         this.recepti = recepti;
     }
+
+    @Override
+    public String toString() {
+        return naziv;
+    }
     
 }

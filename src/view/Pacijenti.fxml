@@ -155,7 +155,7 @@
                   <Font name="Ebrima" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="pregledRecepata" layoutX="400.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Pregled recepata" visible="false">
+            <Button fx:id="prikazPregleda" layoutX="400.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Pregledi" visible="false">
                <font>
                   <Font name="Ebrima" size="14.0" />
                </font>

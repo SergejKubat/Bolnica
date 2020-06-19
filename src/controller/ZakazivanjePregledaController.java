@@ -17,6 +17,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.Doktor;
 import model.Pacijent;
 import utils.Session;
@@ -25,6 +26,9 @@ public class ZakazivanjePregledaController implements Initializable {
 
     @FXML
     private Button zakazivanje;
+    
+    @FXML
+    private Button izlaz;
 
     @FXML
     private ComboBox<Pacijent> pacijenti;
@@ -62,7 +66,7 @@ public class ZakazivanjePregledaController implements Initializable {
         izabraniPacijent = DBHelper.selectPacijent(pacijentId);
         if (doktor2 != null) {
 
-            /*Task<List<Pacijent>> selectPacijentiTask = new Task<List<Pacijent>>() {
+            Task<List<Pacijent>> selectPacijentiTask = new Task<List<Pacijent>>() {
                 @Override
                 public List<Pacijent> call() throws Exception {
                     return DBHelper.selectAllPacijent(doktorId);
@@ -74,12 +78,13 @@ public class ZakazivanjePregledaController implements Initializable {
                 System.out.println("GRESKA!");
             });
 
-            selectPacijentiTask.setOnSucceeded(e -> pacijenti.setItems(FXCollections.observableArrayList(selectPacijentiTask.getValue())));*/
-            pacijenti.setItems(FXCollections.observableArrayList(DBHelper.selectAllPacijent(doktorId)));
+            selectPacijentiTask.setOnSucceeded(e -> pacijenti.setItems(FXCollections.observableArrayList(selectPacijentiTask.getValue())));
+            
+            executor.execute(selectPacijentiTask);
 
             pacijenti.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
-                System.out.println(newValue);
-            }
+                    sesija.setAttribute("izabraniPacijent", String.valueOf(newValue.getPacijentId()));
+                }
             );
 
             if (izabraniPacijent != null) {
@@ -94,7 +99,7 @@ public class ZakazivanjePregledaController implements Initializable {
 
     @FXML
     void zakaziPregled() {
-        String datumText = datum.getValue().format(DateTimeFormatter.ofPattern("dd-MMM-yy"));
+        String datumText = datum.getValue().format(DateTimeFormatter.ofPattern("yy-MM-dd"));
         String vremeText = vreme.getText();
         System.out.println(datumText);
         Platform.runLater(() -> {
@@ -102,6 +107,12 @@ public class ZakazivanjePregledaController implements Initializable {
             System.out.println("OK");
             zakazivanje.setDisable(true);
         });
+    }
+    
+    @FXML
+    void zatvaranjeProzora() {
+        Stage stage = (Stage) izlaz.getScene().getWindow();
+        stage.close();
     }
 
 }

@@ -199,11 +199,12 @@ public class DBHelper {
                 statement.close();
             } catch (SQLException ex) {
                 connection.rollback();
+                System.out.println(ex);
             }
 
             connection.close();
         } catch (SQLException ex) {
-
+            System.out.println(ex);
         }
     }
 
@@ -396,17 +397,18 @@ public class DBHelper {
         }
     }
 
-    public static void updatePregled(int id, String datum, String vreme) {
+    public static void updatePregled(int id, String datum, String vreme, boolean odrzan) {
         try {
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             connection.setAutoCommit(false);
 
-            String query = "UPDATE pregled SET PREGLED_DATUM = ?, PREGLED_VREME = ? WHERE pregled.PREGLED_ID = ?;";
+            String query = "UPDATE pregled SET PREGLED_DATUM = ?, PREGLED_VREME = ?, PREGLED_ODRZAN = ? WHERE pregled.PREGLED_ID = ?;";
 
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setString(1, datum);
                 statement.setString(2, vreme);
-                statement.setInt(3, id);
+                statement.setBoolean(3, odrzan);
+                statement.setInt(4, id);
                 statement.executeUpdate();
                 connection.commit();
                 statement.close();
@@ -677,6 +679,34 @@ public class DBHelper {
         }
         return null;
     }
+    
+    public static List<Pregled> selectAllPregledByPacijent(int id) {
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            connection.setAutoCommit(false);
+
+            String query = "SELECT * FROM pregled WHERE pregled.PACIJENT_ID = ?;";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, id);
+                List<Pregled> pregledi = new ArrayList<>();
+                ResultSet result = statement.executeQuery();
+                while (result.next()) {
+                    pregledi.add(new Pregled(result.getInt(1), selectPacijent(result.getInt(2)), selectDoktor(result.getInt(3)), result.getString(4), result.getString(5), result.getBoolean(6)));
+                }
+                connection.commit();
+                statement.close();
+                return pregledi;
+            } catch (SQLException ex) {
+                connection.rollback();
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+
+        }
+        return null;
+    }
 
     public static Dijagnoza selectDijagnoza(int id) {
         try {
@@ -695,11 +725,12 @@ public class DBHelper {
                 return dijagnoza;
             } catch (SQLException ex) {
                 connection.rollback();
+                System.out.println(ex);
             }
 
             connection.close();
         } catch (SQLException ex) {
-
+            System.out.println(ex);
         }
         return null;
     }
@@ -709,8 +740,7 @@ public class DBHelper {
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             connection.setAutoCommit(false);
 
-            String query = "SELECT DIJAGNOZA_ID, BOLEST_ID, PREGLED_ID, DIJAGNOZA_OPIS FROM dijagnoza JOIN pregled ON dijagnoza.DIJAGNOZA_ID = pregled.DIJAGNOZA_ID "
-                    + "WHERE pregled.DOKTOR_ID = ?;";
+            String query = "SELECT DIJAGNOZA_ID, BOLEST_ID, PREGLED_ID, DIJAGNOZA_OPIS FROM dijagnoza WHERE dijagnoza.PREGLED_ID = ?";
 
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setInt(1, id);
@@ -724,11 +754,12 @@ public class DBHelper {
                 return dijagnoze;
             } catch (SQLException ex) {
                 connection.rollback();
+                System.out.println(ex);
             }
 
             connection.close();
         } catch (SQLException ex) {
-
+            System.out.println(ex);
         }
         return null;
     }
@@ -750,11 +781,12 @@ public class DBHelper {
                 return lek;
             } catch (SQLException ex) {
                 connection.rollback();
+                System.out.println(ex);
             }
 
             connection.close();
         } catch (SQLException ex) {
-
+            System.out.println(ex);
         }
         return null;
     }
@@ -777,11 +809,12 @@ public class DBHelper {
                 return kompanija;
             } catch (SQLException ex) {
                 connection.rollback();
+                System.out.println(ex);
             }
 
             connection.close();
         } catch (SQLException ex) {
-
+            System.out.println(ex);
         }
         return null;
     }
@@ -791,26 +824,26 @@ public class DBHelper {
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             connection.setAutoCommit(false);
 
-            String query = "SELECT RECEPT_ID, LEK_ID, DIJAGNOZA_ID FROM recept JOIN dijagnoza ON recept.DIJAGNOZA_ID = dijagnoza.DIJAGNOZA_ID JOIN pregled ON "
-                    + "dijagnoza.DIJAGNOZA_ID = pregled.DIJAGNOZA_ID WHERE doktor.DOKTOR_ID = 1";
+            String query = "SELECT RECEPT_ID, LEK_ID, DIJAGNOZA_ID FROM recept WHERE recept.DIJAGNOZA_ID = ?";
 
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setInt(1, id);
                 List<Recept> recepti = new ArrayList<>();
                 ResultSet result = statement.executeQuery();
                 while (result.next()) {
-                    recepti.add(new Recept(result.getInt(1), selectLek(result.getInt(1)), selectDijagnoza(result.getInt(1))));
+                    recepti.add(new Recept(result.getInt(1), selectLek(result.getInt(1)), selectDijagnoza(result.getInt(3))));
                 }
                 connection.commit();
                 statement.close();
                 return recepti;
             } catch (SQLException ex) {
                 connection.rollback();
+                System.out.println(ex);
             }
 
             connection.close();
         } catch (SQLException ex) {
-
+            System.out.println(ex);
         }
         return null;
     }
@@ -1093,7 +1126,7 @@ public class DBHelper {
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             connection.setAutoCommit(false);
 
-            String query = "SELECT * FROM bolest;";
+            String query = "SELECT * FROM lek;";
 
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 List<Lek> lekovi = new ArrayList<>();
@@ -1183,7 +1216,7 @@ public class DBHelper {
                 ResultSet result = statement.executeQuery();
                 while (result.next()) {
                     bolnice.add(new Bolnica(result.getInt(1), selectBolnicaTip(result.getInt(2)), selectGrad(result.getInt(3)), result.getString(4), result.getString(5),
-                        result.getString(4)));
+                            result.getString(4)));
                 }
                 connection.commit();
                 statement.close();
@@ -1362,6 +1395,35 @@ public class DBHelper {
         } catch (SQLException ex) {
 
         }
+    }
+
+    public static int dijagnozaHelper(int id) {
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            connection.setAutoCommit(false);
+
+            String query = "SELECT DIJAGNOZA_ID, BOLEST_ID, PREGLED_ID, DIJAGNOZA_OPIS FROM dijagnoza WHERE dijagnoza.PREGLED_ID = ?";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, id);
+                int poslednjiId = 1;
+                ResultSet result = statement.executeQuery();
+                while (result.next()) {
+                    poslednjiId = result.getInt(1);
+                }
+                connection.commit();
+                statement.close();
+                return poslednjiId;
+            } catch (SQLException ex) {
+                connection.rollback();
+                System.out.println(ex);
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return -1;
     }
 
 }

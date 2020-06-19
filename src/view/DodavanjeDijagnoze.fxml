@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="500.0" stylesheets="@../../css/pacijenti.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DodavanjeDijagnozeController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="500.0" stylesheets="file:css/pacijenti.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DodavanjeDijagnozeController">
    <children>
       <VBox layoutX="31.0" layoutY="14.0" prefHeight="300.0" prefWidth="300.0">
          <children>
@@ -45,7 +45,12 @@
             </Pane>
          </children>
       </VBox>
-      <Button fx:id="dodajDijagnozu" layoutX="430.0" layoutY="360.0" mnemonicParsing="false" onAction="#dodavanjeDijagnoze" text="Potvrdi">
+      <Button fx:id="potvrda" layoutX="411.0" layoutY="360.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#dodavanjeDijagnoze" prefHeight="30.0" prefWidth="75.0" text="Potvrdi">
+         <font>
+            <Font name="Ebrima" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="izlaz" layoutX="331.0" layoutY="360.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#zatvaranjeProzora" prefHeight="30.0" prefWidth="75.0" text="Izlaz">
          <font>
             <Font name="Ebrima" size="14.0" />
          </font>

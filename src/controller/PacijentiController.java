@@ -21,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Doktor;
 import model.Pacijent;
@@ -107,7 +108,7 @@ public class PacijentiController implements Initializable {
     private Button zakazivanjePregleda;
 
     @FXML
-    private Button pregledRecepata;
+    private Button prikazPregleda;
 
     @FXML
     private Button istorijaBolesti;
@@ -175,11 +176,11 @@ public class PacijentiController implements Initializable {
             setVrednosti(pacijent);
 
             EventHandler<ActionEvent> event1 = (ActionEvent e) -> {
-                prikaziScenu("ZakazivanjePregleda");
+                prikaziScenu("ZakazivanjePregleda", "Zakazivanje pregleda");
             };
 
             EventHandler<ActionEvent> event2 = (ActionEvent e) -> {
-                System.out.println("Recepti");
+                prikaziScenu("PacijentPregledi", "Pregled - " + pacijent.getIme() + pacijent.getPrezime());
             };
 
             EventHandler<ActionEvent> event3 = (ActionEvent e) -> {
@@ -187,7 +188,7 @@ public class PacijentiController implements Initializable {
             };
 
             zakazivanjePregleda.setOnAction(event1);
-            pregledRecepata.setOnAction(event2);
+            prikazPregleda.setOnAction(event2);
             istorijaBolesti.setOnAction(event3);
         }
 
@@ -212,7 +213,7 @@ public class PacijentiController implements Initializable {
         brojTelefona.setVisible(true);
         adresa.setVisible(true);
         zakazivanjePregleda.setVisible(true);
-        pregledRecepata.setVisible(true);
+        prikazPregleda.setVisible(true);
         istorijaBolesti.setVisible(true);
     }
 
@@ -229,18 +230,18 @@ public class PacijentiController implements Initializable {
     }
 
     @FXML
-    private void prikaziScenu(String ime) {
+    private void prikaziScenu(String ime, String naslov) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/view/" + ime + ".fxml"));
             Scene scene = new Scene(root);
 
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.setTitle("Zakazivanje pregleda");
+            stage.setTitle(naslov);
             //reg.getIcons().add(new Image("file:img/globe.png"));
             stage.setResizable(false);
             stage.sizeToScene();
-            stage.requestFocus();
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (IOException ex) {
             System.out.println(ex);

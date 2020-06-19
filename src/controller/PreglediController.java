@@ -22,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Doktor;
 import model.Pregled;
@@ -145,7 +146,7 @@ public class PreglediController implements Initializable {
 
     @FXML
     void dodajPregled() {
-        prikaziScenu("ZakazivanjePregleda");
+        prikaziScenu("ZakazivanjePregleda", "Zakazivanje pregleda");
     }
 
     @FXML
@@ -163,11 +164,11 @@ public class PreglediController implements Initializable {
             setVrednosti(pregled);
 
             EventHandler<ActionEvent> event1 = (ActionEvent e) -> {
-                prikaziScenu("RezultatPregleda");
+                prikaziScenu("RezultatPregleda", "Rezultat pregleda");
             };
 
             EventHandler<ActionEvent> event2 = (ActionEvent e) -> {
-                prikaziScenu("DodavanjeDijagnoze");
+                prikaziScenu("DodavanjeDijagnoze", "Dodavanje dijagnoze");
             };
 
             if (pregled.isOdrzan()) {
@@ -192,11 +193,11 @@ public class PreglediController implements Initializable {
             setVrednosti(pregled);
 
             EventHandler<ActionEvent> event1 = (ActionEvent e) -> {
-                prikaziScenu("RezultatPregleda");
+                prikaziScenu("RezultatPregleda", "Rezultat pregleda");
             };
 
             EventHandler<ActionEvent> event2 = (ActionEvent e) -> {
-                prikaziScenu("DodavanjeDijagnoze");
+                prikaziScenu("DodavanjeDijagnoze", "Dodavanje dijagnoze");
             };
 
             if (pregled.isOdrzan()) {
@@ -229,18 +230,18 @@ public class PreglediController implements Initializable {
     }
 
     @FXML
-    private void prikaziScenu(String ime) {
+    private void prikaziScenu(String ime, String naslov) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/view/" + ime + ".fxml"));
             Scene scene = new Scene(root);
 
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.setTitle("Zakazivanje pregleda");
+            stage.setTitle(naslov);
             //reg.getIcons().add(new Image("file:img/globe.png"));
             stage.setResizable(false);
             stage.sizeToScene();
-            stage.requestFocus();
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (IOException ex) {
             System.out.println(ex);
