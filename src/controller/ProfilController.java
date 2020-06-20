@@ -37,6 +37,12 @@ public class ProfilController implements Initializable {
 
     @FXML
     private Label adresa;
+    
+    @FXML
+    private Label bolnica;
+    
+    @FXML
+    private Label grad;
 
     Doktor doktor;
 
@@ -55,6 +61,8 @@ public class ProfilController implements Initializable {
             email.setText(doktor.getEmail());
             brojTelefona.setText(doktor.getBrojTelefona());
             adresa.setText(doktor.getAdresa());
+            bolnica.setText(doktor.getOdeljenjeId().getBolnicaId().getIme() + ", " + doktor.getOdeljenjeId().getBolnicaId().getAdresa());
+            grad.setText(doktor.getOdeljenjeId().getBolnicaId().getGradId().getIme());
         } else {
             System.exit(0);
         }

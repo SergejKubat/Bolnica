@@ -97,39 +97,43 @@ public class RezultatPregledaController implements Initializable {
 
     @FXML
     void prikaziLekove() {
-        
+
         Dijagnoza izabranaDijagnoza = dijagnozeTabela.getSelectionModel().getSelectedItem();
 
-        executor = Executors.newCachedThreadPool(runnable -> {
-            Thread t = new Thread(runnable);
-            t.setDaemon(true);
-            return t;
-        });
-
-        Task<List<Recept>> selectReceptiTask = new Task<List<Recept>>() {
-            @Override
-            public List<Recept> call() throws Exception {
-                return DBHelper.selectAllRecept(izabranaDijagnoza.getId());
-            }
-        };
-
-        selectReceptiTask.setOnFailed(e -> {
-            selectReceptiTask.getException().printStackTrace();
-            System.out.println("GRESKA!");
-        });
-
-        selectReceptiTask.setOnSucceeded(e -> {
-            List<Recept> recepti = selectReceptiTask.getValue();
-            prepisaniLekoviText.setVisible(true);
-            prepisaniLekovi.setVisible(true);
-            StringBuilder sb = new StringBuilder();
-            recepti.forEach((recept) -> {
-                sb.append(recept.getLekId().getNaziv()).append(", ");
+        if (izabranaDijagnoza != null) {
+            
+            executor = Executors.newCachedThreadPool(runnable -> {
+                Thread t = new Thread(runnable);
+                t.setDaemon(true);
+                return t;
             });
-            prepisaniLekovi.setText(sb.delete(sb.length() - 2, sb.length() - 1).toString());
-        });
-        
-        executor.execute(selectReceptiTask);
+
+            Task<List<Recept>> selectReceptiTask = new Task<List<Recept>>() {
+                @Override
+                public List<Recept> call() throws Exception {
+                    return DBHelper.selectAllRecept(izabranaDijagnoza.getId());
+                }
+            };
+
+            selectReceptiTask.setOnFailed(e -> {
+                selectReceptiTask.getException().printStackTrace();
+                System.out.println("GRESKA!");
+            });
+
+            selectReceptiTask.setOnSucceeded(e -> {
+                List<Recept> recepti = selectReceptiTask.getValue();
+                prepisaniLekoviText.setVisible(true);
+                prepisaniLekovi.setVisible(true);
+                StringBuilder sb = new StringBuilder();
+                recepti.forEach((recept) -> {
+                    sb.append(recept.getLekId().getNaziv()).append(", ");
+                });
+                prepisaniLekovi.setText(sb.delete(sb.length() - 2, sb.length() - 1).toString());
+            });
+
+            executor.execute(selectReceptiTask);
+            
+        }
 
     }
 

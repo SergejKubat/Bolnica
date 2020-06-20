@@ -160,11 +160,6 @@
                   <Font name="Ebrima" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="istorijaBolesti" layoutX="400.0" layoutY="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Istorija bolesti" visible="false">
-               <font>
-                  <Font name="Ebrima" size="14.0" />
-               </font>
-            </Button>
          </children>
       </Pane>
    </children>

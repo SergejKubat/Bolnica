@@ -15,14 +15,14 @@
       </Label>
       <VBox layoutX="20.0" layoutY="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0">
          <children>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0">
                <children>
-                  <Label layoutY="24.0" text="Tip:">
+                  <Label layoutY="12.0" text="Tip:">
                      <font>
                         <Font name="Ebrima" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="tip" layoutX="150.0" layoutY="25.0" text="Tip">
+                  <Label fx:id="tip" layoutX="150.0" layoutY="12.0">
                      <font>
                         <Font name="Ebrima" size="18.0" />
                      </font>
@@ -32,98 +32,126 @@
                   <Insets />
                </opaqueInsets>
             </Pane>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0">
                <children>
-                  <Label layoutY="24.0" text="Odeljenje:">
+                  <Label layoutY="12.0" text="Odeljenje:">
                      <font>
                         <Font name="Ebrima" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="odeljenje" layoutX="150.0" layoutY="25.0" text="Tip">
+                  <Label fx:id="odeljenje" layoutX="150.0" layoutY="12.0">
                      <font>
                         <Font name="Ebrima" size="18.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0">
                <children>
-                  <Label layoutY="24.0" text="Pol:">
+                  <Label layoutY="12.0" text="Pol:">
                      <font>
                         <Font name="Ebrima" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="pol" layoutX="150.0" layoutY="25.0" text="Tip">
+                  <Label fx:id="pol" layoutX="150.0" layoutY="12.0">
                      <font>
                         <Font name="Ebrima" size="18.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0">
                <children>
-                  <Label layoutY="24.0" text="Datum rođenja:">
+                  <Label layoutY="12.0" text="Datum rođenja:">
                      <font>
                         <Font name="Ebrima" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="datumRodjenja" layoutX="150.0" layoutY="25.0" text="Tip">
+                  <Label fx:id="datumRodjenja" layoutX="150.0" layoutY="12.0">
                      <font>
                         <Font name="Ebrima" size="18.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0">
                <children>
-                  <Label layoutY="24.0" text="JMBG:">
+                  <Label layoutY="12.0" text="JMBG:">
                      <font>
                         <Font name="Ebrima" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="jmbg" layoutX="150.0" layoutY="25.0" text="Tip">
+                  <Label fx:id="jmbg" layoutX="150.0" layoutY="12.0">
                      <font>
                         <Font name="Ebrima" size="18.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0">
                <children>
-                  <Label layoutY="24.0" text="Email:">
+                  <Label layoutY="12.0" text="Email:">
                      <font>
                         <Font name="Ebrima" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="email" layoutX="150.0" layoutY="25.0" text="Tip">
+                  <Label fx:id="email" layoutX="150.0" layoutY="12.0">
                      <font>
                         <Font name="Ebrima" size="18.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0">
                <children>
-                  <Label layoutY="24.0" text="Broj telefona:">
+                  <Label layoutY="12.0" text="Broj telefona:">
                      <font>
                         <Font name="Ebrima" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="brojTelefona" layoutX="150.0" layoutY="25.0" text="Tip">
+                  <Label fx:id="brojTelefona" layoutX="150.0" layoutY="12.0">
                      <font>
                         <Font name="Ebrima" size="18.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="400.0">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0">
                <children>
-                  <Label layoutY="24.0" text="Adresa:">
+                  <Label layoutY="12.0" text="Adresa:">
                      <font>
                         <Font name="Ebrima" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="adresa" layoutX="150.0" layoutY="25.0" text="Tip">
+                  <Label fx:id="adresa" layoutX="150.0" layoutY="12.0">
+                     <font>
+                        <Font name="Ebrima" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0">
+               <children>
+                  <Label layoutY="12.0" text="Bolnica:">
+                     <font>
+                        <Font name="Ebrima" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="bolnica" layoutX="150.0" layoutY="12.0">
+                     <font>
+                        <Font name="Ebrima" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="400.0">
+               <children>
+                  <Label layoutY="12.0" text="Grad:">
+                     <font>
+                        <Font name="Ebrima" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="grad" layoutX="150.0" layoutY="12.0">
                      <font>
                         <Font name="Ebrima" size="18.0" />
                      </font>

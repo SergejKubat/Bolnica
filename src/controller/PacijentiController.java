@@ -110,9 +110,6 @@ public class PacijentiController implements Initializable {
     @FXML
     private Button prikazPregleda;
 
-    @FXML
-    private Button istorijaBolesti;
-
     private Executor executor;
 
     private Doktor doktor;
@@ -180,16 +177,11 @@ public class PacijentiController implements Initializable {
             };
 
             EventHandler<ActionEvent> event2 = (ActionEvent e) -> {
-                prikaziScenu("PacijentPregledi", "Pregled - " + pacijent.getIme() + pacijent.getPrezime());
-            };
-
-            EventHandler<ActionEvent> event3 = (ActionEvent e) -> {
-                System.out.println("Istorija bolesti");
+                prikaziScenu("PacijentPregledi", "Pregled - " + pacijent.getIme() + " " + pacijent.getPrezime());
             };
 
             zakazivanjePregleda.setOnAction(event1);
             prikazPregleda.setOnAction(event2);
-            istorijaBolesti.setOnAction(event3);
         }
 
     }
@@ -214,7 +206,6 @@ public class PacijentiController implements Initializable {
         adresa.setVisible(true);
         zakazivanjePregleda.setVisible(true);
         prikazPregleda.setVisible(true);
-        istorijaBolesti.setVisible(true);
     }
 
     @FXML

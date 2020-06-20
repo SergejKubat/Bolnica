@@ -831,7 +831,7 @@ public class DBHelper {
                 List<Recept> recepti = new ArrayList<>();
                 ResultSet result = statement.executeQuery();
                 while (result.next()) {
-                    recepti.add(new Recept(result.getInt(1), selectLek(result.getInt(1)), selectDijagnoza(result.getInt(3))));
+                    recepti.add(new Recept(result.getInt(1), selectLek(result.getInt(2)), selectDijagnoza(result.getInt(3))));
                 }
                 connection.commit();
                 statement.close();

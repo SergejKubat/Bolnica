@@ -5,6 +5,10 @@ import java.io.IOException;
 import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.prefs.BackingStoreException;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,15 +35,20 @@ public class PocetnaDoktorController implements Initializable {
 
     @FXML
     private Button pregledi;
+    
+    @FXML
+    private Button odjava;
 
     @FXML
     private Pane prikaz;
 
     private Doktor doktor;
+    
+    private Session sesija;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Session sesija = Session.getInstance();
+        sesija = Session.getInstance();
         int id = Integer.parseInt(sesija.getAttribute("id"));
         doktor = DBHelper.selectDoktor(id);
         if (doktor != null) {
@@ -70,6 +79,16 @@ public class PocetnaDoktorController implements Initializable {
     void prikaziProfil() throws IOException {
         Parent profil = FXMLLoader.load(getClass().getResource("/view/Profil.fxml"));
         prikaz.getChildren().setAll(profil);
+    }
+    
+    @FXML
+    void odjaviSe() {
+        try {
+            sesija.clear();
+            Platform.exit();
+        } catch (BackingStoreException ex) {
+            System.out.println(ex);
+        }
     }
 
 }
