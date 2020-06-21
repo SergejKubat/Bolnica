@@ -25,17 +25,17 @@
                 <Font name="Ebrima Bold" size="16.0" />
             </font>
         </Label>
-        <TextField fx:id="emailInput" layoutX="85.0" layoutY="230.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#validateEmailInput" prefHeight="30.0" prefWidth="250.0" promptText="Unesite email">
+        <TextField fx:id="emailInput" layoutX="85.0" layoutY="216.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#validateEmailInput" prefHeight="30.0" prefWidth="250.0" promptText="Unesite email">
             <font>
                 <Font size="14.0" />
             </font>
         </TextField>
-        <Button fx:id="resetujLozinkuBtn" layoutX="58.0" layoutY="476.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetujLozinku" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" text="Resetuj lozinku">
+        <Button fx:id="resetujLozinkuBtn" layoutX="58.0" layoutY="476.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#promeniLozinku" prefHeight="50.0" prefWidth="300.0" styleClass="loginBtn" text="Promenite lozinku">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
         </Button>
-        <Label layoutX="84.0" layoutY="204.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="forgetBtn" text="Email:" textFill="#a3a3a3">
+        <Label layoutX="84.0" layoutY="190.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="forgetBtn" text="Email:" textFill="#a3a3a3">
             <font>
                 <Font name="Ebrima" size="14.0" />
             </font>
@@ -55,7 +55,7 @@
                 <Font name="Ebrima" size="16.0" />
             </font>
         </Label>
-        <Label fx:id="emailSavet" layoutX="85.0" layoutY="260.0" text="Email mora biti u validnom formatu." textFill="#cf0808" />
+        <Label fx:id="emailSavet" layoutX="85.0" layoutY="246.0" text="Email mora biti u validnom formatu." textFill="#cf0808" />
       <TextField fx:id="sigurnosniKodInput" layoutX="85.0" layoutY="402.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#validateSigurnosniKodInput" prefHeight="30.0" prefWidth="250.0" promptText="Unesite sigurnosni kod">
          <font>
             <Font size="14.0" />
@@ -67,10 +67,14 @@
          </font>
       </Label>
       <Label fx:id="sigurnosniKodSavet" layoutX="84.0" layoutY="432.0" text="Sigurnosni kod mora biti šestocifreni broj." textFill="#cf0808" />
-      <Button fx:id="posaljiKodBtn" layoutX="125.0" layoutY="305.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#posaljiKod" prefHeight="40.0" prefWidth="150.0" styleClass="loginBtn" text="Pošalji kod">
+      <Button fx:id="posaljiKodBtn" layoutX="125.0" layoutY="290.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#posaljiKod" prefHeight="40.0" prefWidth="150.0" styleClass="loginBtn" text="Pošaljite kod">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
+      <Label fx:id="poruka" layoutX="85.0" layoutY="347.0" visible="false">
+         <font>
+            <Font name="Ebrima" size="12.0" />
+         </font></Label>
     </children>
 </Pane>

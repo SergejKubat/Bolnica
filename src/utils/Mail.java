@@ -11,9 +11,9 @@ import javax.mail.internet.MimeMessage;
 import model.Doktor;
 
 public class Mail {
-    
-    private static final String USERNAME = "travelieropodrska@gmail.com";
-    private static final String PASSWORD = "traveliero123";
+
+    private static final String USERNAME = "drzavnabolnica2020@gmail.com";
+    private static final String PASSWORD = "drzavnabolnica123";
 
     public static boolean sendMail(Doktor doktor, String sigurnosniKod) {
         Properties prop = new Properties();
@@ -39,7 +39,7 @@ public class Mail {
             message.setSubject("Bolnica - Sigurnosni kod");
             String htmlCode = "<h2 style='color: #2196f3; font-size: 24px;'>Zdravo " + doktor.getIme() + " " + doktor.getPrezime() + "!</h2><br>"
                     + "<p style='font-size: 16px;'>Sigurnosni kod je <b>" + sigurnosniKod + "</b>.</p><br><img src='"
-                    + "http://www.clipartroo.com/images/49/vacation-clipart-49622.png' /><br>";
+                    + "https://image.flaticon.com/icons/svg/504/504093.svg' /><br>";
             message.setContent(htmlCode, "text/html");
 
             Transport.send(message);
@@ -47,10 +47,10 @@ public class Mail {
             System.out.println("Uspesno poslat email!");
 
         } catch (MessagingException e) {
+            e.printStackTrace();
             return false;
         }
         return true;
     }
 
 }
-

@@ -19,6 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import model.BolnicaTip;
 import model.DoktorTip;
@@ -397,6 +398,40 @@ public class DBHelper {
         }
     }
 
+    public static void updateDoktor(int id, String ime, String prezime, String pol, String jmbg, String email, String telefon, String adresa,
+            String opis, String lozinka, boolean isBlokiran) {
+        try {
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            connection.setAutoCommit(false);
+
+            String query = "UPDATE doktor SET DOKTOR_IME = ?, DOKTOR_PREZIME = ?, DOKTOR_POL = ?, DOKTOR_DATUM_RODJENJA = ?, DOKTOR_JMBG = ?, DOKTOR_EMAIL = ?, "
+                    + "DOKTOR_BROJ_TELEFONA = ?, DOKTOR_ADRESA = ?, DOKTOR_OPIS = ?, DOKTOR_IS_BLOKIRAN = ?  WHERE doktor.DOKTOR_ID = ?;";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setString(1, ime);
+                statement.setString(2, prezime);
+                statement.setString(3, pol);
+                statement.setString(4, jmbg);
+                statement.setString(5, email);
+                statement.setString(6, telefon);
+                statement.setString(7, adresa);
+                statement.setString(8, opis);
+                statement.setString(9, lozinka);
+                statement.setBoolean(10, isBlokiran);
+                statement.setInt(11, id);
+                statement.executeUpdate();
+                connection.commit();
+                statement.close();
+            } catch (SQLException ex) {
+                connection.rollback();
+            }
+
+            connection.close();
+        } catch (SQLException ex) {
+
+        }
+    }
+
     public static void updatePregled(int id, String datum, String vreme, boolean odrzan) {
         try {
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
@@ -679,7 +714,7 @@ public class DBHelper {
         }
         return null;
     }
-    
+
     public static List<Pregled> selectAllPregledByPacijent(int id) {
         try {
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
