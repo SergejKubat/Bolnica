@@ -17,11 +17,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Doktor;
@@ -122,15 +124,23 @@ public class PreglediController implements Initializable {
             };
 
             selectZakazaniPreglediTask.setOnFailed(e -> {
-                selectZakazaniPreglediTask.getException().printStackTrace();
-                System.out.println("GRESKA!");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Upozorenje");
+                alert.setHeaderText(null);
+                alert.setContentText("Došlo je do greške prilikom učitavanja podataka.");
+
+                alert.showAndWait();
             });
 
             selectZakazaniPreglediTask.setOnSucceeded(e -> zakazaniPreglediTabela.getItems().setAll(FXCollections.observableArrayList(selectZakazaniPreglediTask.getValue())));
 
             selectObavljeniPreglediTask.setOnFailed(e -> {
-                selectObavljeniPreglediTask.getException().printStackTrace();
-                System.out.println("GRESKA!");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Upozorenje");
+                alert.setHeaderText(null);
+                alert.setContentText("Došlo je do greške prilikom učitavanja podataka.");
+
+                alert.showAndWait();
             });
 
             selectObavljeniPreglediTask.setOnSucceeded(e -> obavljeniPreglediTabela.getItems().setAll(FXCollections.observableArrayList(selectObavljeniPreglediTask.getValue())));
@@ -139,6 +149,12 @@ public class PreglediController implements Initializable {
             executor.execute(selectObavljeniPreglediTask);
 
         } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Upozorenje");
+            alert.setHeaderText(null);
+            alert.setContentText("Morate se prijaviti da bi ste pristupili ovoj stranici.");
+
+            alert.showAndWait();
             System.exit(0);
         }
 
@@ -238,13 +254,18 @@ public class PreglediController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle(naslov);
-            //reg.getIcons().add(new Image("file:img/globe.png"));
+            stage.getIcons().add(new Image("file:img/logo.png"));
             stage.setResizable(false);
             stage.sizeToScene();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (IOException ex) {
-            System.out.println(ex);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Upozorenje");
+            alert.setHeaderText(null);
+            alert.setContentText("Stranica nije pronadjena.");
+
+            alert.showAndWait();
         }
     }
 

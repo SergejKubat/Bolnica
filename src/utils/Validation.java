@@ -35,7 +35,7 @@ public class Validation {
         return Pattern.matches(REGEX_SIGURNOSNI_KOD, sigurnosniKod);
     }
     
-    public static boolean proveriVreme(String sigurnosniKod) {
-        return Pattern.matches(REGEX_VREME, sigurnosniKod);
+    public static boolean proveriVreme(String vreme) {
+        return Pattern.matches(REGEX_VREME, vreme);
     }
 }

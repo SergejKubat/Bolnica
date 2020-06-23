@@ -7,14 +7,17 @@ import utils.Validation;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -57,21 +60,11 @@ public class PrijavaDoktorController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        /*sesija = Session.getInstance();
-        String id = sesija.getAttribute("id");
-        if (id != null) {
-            try {
-                prikaziPocetnu();
-            } catch (IOException ex) {
-                System.out.println(ex);
-            }
-        } else {*/
         emailError.setVisible(false);
         lozinkaError.setVisible(false);
         emailSavet.setVisible(false);
         lozinkaSavet.setVisible(false);
         prijavaBtn.setDisable(true);
-        /*}*/
     }
 
     @FXML
@@ -133,17 +126,33 @@ public class PrijavaDoktorController implements Initializable {
             if (doktor != null) {
                 sesija = Session.getInstance();
                 sesija.setAttribute("id", String.valueOf(doktor.getId()));
-                System.out.println(doktor.toString());
-                try {
-                    prikaziPocetnu();
-                } catch (IOException ex) {
-                    System.out.println(ex);
-                }
+                Platform.runLater(() -> {
+                    try {
+                        prikaziPocetnu();
+                    } catch (IOException ex) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Greška");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Stranica nije pronađena.");
+
+                        alert.showAndWait();
+                    }
+                });
             } else {
-                System.out.println("Pogresni kredencijali");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Greška");
+                alert.setHeaderText(null);
+                alert.setContentText("Pogrešni kredencijali.");
+
+                alert.showAndWait();
             }
         } else {
-            System.out.println("pogresan format");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Greška");
+            alert.setHeaderText(null);
+            alert.setContentText("Pogrešan format unetih podataka.");
+
+            alert.showAndWait();
         }
     }
 
@@ -163,14 +172,12 @@ public class PrijavaDoktorController implements Initializable {
 
     @FXML
     public void prikaziPocetnu() throws IOException {
-        emailInput.getScene().getWindow().hide();
-
-        Stage stage = new Stage();
+        Stage stage = (Stage) emailInput.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("/view/PocetnaDoktor.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Doktor - Pocetna");
-        //reg.getIcons().add(new Image("file:img/globe.png"));
+        stage.setTitle("Doktor - Početna");
+        stage.getIcons().add(new Image("file:img/logo.png"));
         stage.setResizable(false);
         stage.sizeToScene();
         stage.show();

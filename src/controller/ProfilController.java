@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import model.Doktor;
 import utils.Session;
@@ -37,10 +38,10 @@ public class ProfilController implements Initializable {
 
     @FXML
     private Label adresa;
-    
+
     @FXML
     private Label bolnica;
-    
+
     @FXML
     private Label grad;
 
@@ -64,6 +65,12 @@ public class ProfilController implements Initializable {
             bolnica.setText(doktor.getOdeljenjeId().getBolnicaId().getIme() + ", " + doktor.getOdeljenjeId().getBolnicaId().getAdresa());
             grad.setText(doktor.getOdeljenjeId().getBolnicaId().getGradId().getIme());
         } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Upozorenje");
+            alert.setHeaderText(null);
+            alert.setContentText("Morate se prijaviti da bi ste pristupili ovoj stranici.");
+
+            alert.showAndWait();
             System.exit(0);
         }
     }

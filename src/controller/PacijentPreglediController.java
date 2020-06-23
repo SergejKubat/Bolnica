@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -86,7 +87,6 @@ public class PacijentPreglediController implements Initializable {
 
             datumColumn.setCellValueFactory(new PropertyValueFactory<>("datum"));
             vremeColumn.setCellValueFactory(new PropertyValueFactory<>("vreme"));
-            //odrzanColumn.setCellValueFactory(new PropertyValueFactory<>("odrzan"));
             odrzanColumn.setCellValueFactory(cellData -> {
                 boolean odrzan = cellData.getValue().isOdrzan();
                 String odrzanString;
@@ -107,8 +107,12 @@ public class PacijentPreglediController implements Initializable {
             };
 
             selectPreglediTask.setOnFailed(e -> {
-                selectPreglediTask.getException().printStackTrace();
-                System.out.println("GRESKA!");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Greška");
+                alert.setHeaderText(null);
+                alert.setContentText("Došlo je do greške priliko učitavanaja podataka.");
+
+                alert.showAndWait();
             });
 
             selectPreglediTask.setOnSucceeded(e -> preglediTabela.setItems(FXCollections.observableArrayList(selectPreglediTask.getValue())));
@@ -146,15 +150,24 @@ public class PacijentPreglediController implements Initializable {
                 };
 
                 selectDijagnozeTask.setOnFailed(e -> {
-                    selectDijagnozeTask.getException().printStackTrace();
-                    System.out.println("GRESKA!");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Greška");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Došlo je do greške priliko učitavanaja podataka.");
+
+                    alert.showAndWait();
                 });
 
                 selectDijagnozeTask.setOnSucceeded(e -> dijagnozeTabela.setItems(FXCollections.observableArrayList(selectDijagnozeTask.getValue())));
 
                 executor.execute(selectDijagnozeTask);
             } else {
-                System.out.println("Pregled nije odrzan!");
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Upozorenje");
+                alert.setHeaderText(null);
+                alert.setContentText("Pregled nije održan.");
+
+                alert.showAndWait();
             }
 
         }
@@ -183,8 +196,12 @@ public class PacijentPreglediController implements Initializable {
             };
 
             selectReceptiTask.setOnFailed(e -> {
-                selectReceptiTask.getException().printStackTrace();
-                System.out.println("GRESKA!");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Greška");
+                alert.setHeaderText(null);
+                alert.setContentText("Došlo je do greške priliko učitavanaja podataka.");
+
+                alert.showAndWait();
             });
 
             selectReceptiTask.setOnSucceeded(e -> {

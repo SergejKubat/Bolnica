@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
@@ -18,7 +19,6 @@ import javafx.stage.Stage;
 import model.Bolest;
 import model.Doktor;
 import model.Lek;
-import model.Pacijent;
 import model.Pregled;
 import utils.Session;
 
@@ -35,7 +35,7 @@ public class DodavanjeDijagnozeController implements Initializable {
 
     @FXML
     private Button potvrda;
-    
+
     @FXML
     private Button izlaz;
 
@@ -81,15 +81,23 @@ public class DodavanjeDijagnozeController implements Initializable {
                 };
 
                 selectBolestiTask.setOnFailed(e -> {
-                    selectBolestiTask.getException().printStackTrace();
-                    System.out.println("GRESKA!");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Greška");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Došlo je do greške priliko učitavanaja podataka.");
+
+                    alert.showAndWait();
                 });
 
                 selectBolestiTask.setOnSucceeded(e -> bolesti.setItems(FXCollections.observableArrayList(selectBolestiTask.getValue())));
 
                 selectLekoviTask.setOnFailed(e -> {
-                    selectLekoviTask.getException().printStackTrace();
-                    System.out.println("GRESKA!");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Greška");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Došlo je do greške priliko učitavanaja podataka.");
+
+                    alert.showAndWait();
                 });
 
                 selectLekoviTask.setOnSucceeded(e -> lekovi.setItems(FXCollections.observableArrayList(selectLekoviTask.getValue())));
@@ -100,6 +108,12 @@ public class DodavanjeDijagnozeController implements Initializable {
             }
 
         } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Upozorenje");
+            alert.setHeaderText(null);
+            alert.setContentText("Morate da se prijaviti da bi ste pristupili ovoj stranici.");
+
+            alert.showAndWait();
             System.exit(0);
         }
 
@@ -113,11 +127,16 @@ public class DodavanjeDijagnozeController implements Initializable {
         Platform.runLater(() -> {
             DBHelper.insertDijagnoza(bolest.getId(), izabraniPregled.getId(), opisText);
             int dijagnozaId = DBHelper.dijagnozaHelper(izabraniPregled.getId());
-            System.out.println("ID: " + dijagnozaId);
             DBHelper.insertRecept(lek.getId(), ++dijagnozaId);
             izabraniPregled.setOdrzan(true);
             DBHelper.updatePregled(izabraniPregled.getId(), izabraniPregled.getDatum(), izabraniPregled.getVreme(), izabraniPregled.isOdrzan());
             potvrda.setDisable(true);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Informacija");
+            alert.setHeaderText(null);
+            alert.setContentText("Dijagnoza je uspešno dodata.");
+
+            alert.showAndWait();
         });
     }
 

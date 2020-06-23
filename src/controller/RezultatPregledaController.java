@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -80,8 +81,12 @@ public class RezultatPregledaController implements Initializable {
                 };
 
                 selectDijagnozeTask.setOnFailed(e -> {
-                    selectDijagnozeTask.getException().printStackTrace();
-                    System.out.println("GRESKA!");
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Upozorenje");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Došlo je do greške prilikom učitavanja podataka.");
+
+                    alert.showAndWait();
                 });
 
                 selectDijagnozeTask.setOnSucceeded(e -> dijagnozeTabela.getItems().setAll(FXCollections.observableArrayList(selectDijagnozeTask.getValue())));
@@ -91,6 +96,12 @@ public class RezultatPregledaController implements Initializable {
             }
 
         } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Upozorenje");
+            alert.setHeaderText(null);
+            alert.setContentText("Morate se prijaviti da bi ste pristupili ovoj stranici.");
+
+            alert.showAndWait();
             System.exit(0);
         }
     }
@@ -101,7 +112,7 @@ public class RezultatPregledaController implements Initializable {
         Dijagnoza izabranaDijagnoza = dijagnozeTabela.getSelectionModel().getSelectedItem();
 
         if (izabranaDijagnoza != null) {
-            
+
             executor = Executors.newCachedThreadPool(runnable -> {
                 Thread t = new Thread(runnable);
                 t.setDaemon(true);
@@ -116,8 +127,12 @@ public class RezultatPregledaController implements Initializable {
             };
 
             selectReceptiTask.setOnFailed(e -> {
-                selectReceptiTask.getException().printStackTrace();
-                System.out.println("GRESKA!");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Upozorenje");
+                alert.setHeaderText(null);
+                alert.setContentText("Došlo je do greške prilikom učitavanja podataka.");
+
+                alert.showAndWait();
             });
 
             selectReceptiTask.setOnSucceeded(e -> {
@@ -132,7 +147,7 @@ public class RezultatPregledaController implements Initializable {
             });
 
             executor.execute(selectReceptiTask);
-            
+
         }
 
     }

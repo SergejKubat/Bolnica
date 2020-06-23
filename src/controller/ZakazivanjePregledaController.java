@@ -12,21 +12,24 @@ import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.Doktor;
 import model.Pacijent;
 import utils.Session;
+import utils.Validation;
 
 public class ZakazivanjePregledaController implements Initializable {
 
     @FXML
     private Button zakazivanje;
-    
+
     @FXML
     private Button izlaz;
 
@@ -41,6 +44,12 @@ public class ZakazivanjePregledaController implements Initializable {
 
     @FXML
     private TextField vreme;
+    
+    @FXML
+    private ImageView vremeError;
+
+    @FXML
+    private Label vremeSavet;
 
     private Doktor doktor2;
 
@@ -74,17 +83,21 @@ public class ZakazivanjePregledaController implements Initializable {
             };
 
             selectPacijentiTask.setOnFailed(e -> {
-                selectPacijentiTask.getException().printStackTrace();
-                System.out.println("GRESKA!");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Greška");
+                alert.setHeaderText(null);
+                alert.setContentText("Došlo je do greške priliko učitavanja podataka.");
+
+                alert.showAndWait();
             });
 
             selectPacijentiTask.setOnSucceeded(e -> pacijenti.setItems(FXCollections.observableArrayList(selectPacijentiTask.getValue())));
-            
+
             executor.execute(selectPacijentiTask);
 
             pacijenti.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
-                    sesija.setAttribute("izabraniPacijent", String.valueOf(newValue.getPacijentId()));
-                }
+                sesija.setAttribute("izabraniPacijent", String.valueOf(newValue.getPacijentId()));
+            }
             );
 
             if (izabraniPacijent != null) {
@@ -93,6 +106,12 @@ public class ZakazivanjePregledaController implements Initializable {
 
             doktor.setText(doktor2.getIme() + " " + doktor2.getPrezime());
         } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Upozorenje");
+            alert.setHeaderText(null);
+            alert.setContentText("Morate da se prijavite da bi ste pristupili ovoj stranici.");
+
+            alert.showAndWait();
             System.exit(0);
         }
     }
@@ -104,11 +123,25 @@ public class ZakazivanjePregledaController implements Initializable {
         System.out.println(datumText);
         Platform.runLater(() -> {
             DBHelper.insertPregled(izabraniPacijent.getPacijentId(), doktor2.getId(), datumText, vremeText);
-            System.out.println("OK");
             zakazivanje.setDisable(true);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Informacija");
+            alert.setHeaderText(null);
+            alert.setContentText("Pregled je uspešno zakazan.");
+
+            alert.showAndWait();
         });
     }
     
+    @FXML
+    private void validateVremeInput() {
+        String vremeText = vreme.getText();
+        boolean valid = Validation.proveriVreme(vremeText);
+        vremeError.setVisible(!valid);
+        vremeSavet.setVisible(!valid);
+        zakazivanje.setDisable(!valid);
+    }
+
     @FXML
     void zatvaranjeProzora() {
         Stage stage = (Stage) izlaz.getScene().getWindow();
